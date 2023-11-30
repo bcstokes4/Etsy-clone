@@ -5,14 +5,27 @@ Revises:
 Create Date: 2020-11-20 15:06:02.230689
 
 """
+from __future__ import with_statement
+
 from alembic import op
 import sqlalchemy as sa
+
+from alembic import context
+
+import logging
+from logging.config import fileConfig
+
+from sqlalchemy import engine_from_config
+from sqlalchemy import pool
 
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+config = context.config
 
+fileConfig(config.config_file_name)
+logger = logging.getLogger('alembic.env')
 # revision identifiers, used by Alembic.
 revision = 'ffdc0a98111c'
 down_revision = None
