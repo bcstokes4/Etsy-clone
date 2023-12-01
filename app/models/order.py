@@ -17,6 +17,8 @@ class Order(db.Model):
     
     user = db.relationship("User", back_populates="orders")
     products = db.relationship("OrderProduct", back_populates="order")
+    
+    
     ##NOTE: THE ORDERPRODUCT MODEL WILL NEED TO PULL FROM PRODUCTS SO ORDERS CAN HAVE PRODUCT INFO
     
     def to_dict(self):

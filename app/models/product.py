@@ -1,5 +1,6 @@
 from . import db, add_prefix_for_prod
 from .db import environment, SCHEMA
+from .favorites import favorites
 
 class Product(db.Model):
     __tablename__ = "products"
@@ -17,8 +18,35 @@ class Product(db.Model):
     
     user = db.relationship("User", back_populates="products")
     orders = db.relationship("OrderProduct", back_populates='product')
-    # orders = 
-    # images = 
-    # favorites = 
+    images = db.relationship("ProductImage", back_populates='product',cascade="all, delete")
+    favorites = db.relationship("User", secondary=favorites, back_populates='favorites')
+    reviews = db.relationship("Review", back_populates="product", cascade="all, delete")
     
-    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'name': self.name,
+            'body': self.body,
+            'price': self.price,
+            'category': self.category,
+            'created_at': self.created_at,
+            # 'reviews': [review.to_dict() for review in self.reviews],
+            # 'user': self.user.to_dict(),
+            # 'favorites': self.favorites is not None
+            }
+        
+    def to_dict_detailed(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'name': self.name,
+            'body': self.body,
+            'price': self.price,
+            'category': self.category,
+            'created_at': self.created_at,
+            'reviews': [review.to_dict() for review in self.reviews],
+            'user': self.user.to_dict(),
+            'favorites': self.favorites is not None,
+            # 'orders': [order.to_dict_orders_only() for order in self.orders]
+        }

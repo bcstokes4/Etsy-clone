@@ -12,3 +12,5 @@ class ProductImage(db.Model):
     product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id"), ondelete='CASCADE'), nullable=False)
     product_image = db.Column(db.String(255), nullable=False)
     preview_image = db.Column(db.Boolean, nullable=False)
+    
+    product = db.relationship("Product", back_populates='images', )

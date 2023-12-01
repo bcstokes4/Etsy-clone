@@ -10,7 +10,7 @@ class OrderProduct(db.Model):
         
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("orders.id"), ondelete='CASCADE'), nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id"), ondelete='CASCADE'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("products.id"), ondelete='CASCADE'), nullable=True)
     quantity = db.Column(db.Integer, nullable=False)
     
     order = db.relationship("Order", back_populates="products")
@@ -18,15 +18,16 @@ class OrderProduct(db.Model):
     
     def to_dict(self):
         return {
-            "id": self.id,
+            # "id": self.id,
             "order_id": self.order_id,
             "product_id": self.product_id,
             "quantity": self.quantity,
-            "products": [product.to_dict() for product in self.products]
+            "orders": self.order.to_dict()
         }
     
+    def to_dict_orders_only(self):
+        return self.order.to_dict()
+    
     def to_dict_products_only(self):
-        return {
-            "products": [product.to_dict() for product in self.products]
-        }
+        return self.product.to_dict()
     

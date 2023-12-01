@@ -6,14 +6,51 @@ from datetime import datetime
 def seed_users():
     demo = User(
         username='Demo', name='demo-lition', email='demo@aa.io', password='password', created_at=datetime.today())
-    marnie = User(
-        username='marnie', name='Marnie', email='marnie@aa.io', password='password', created_at=datetime.today())
-    bobbie = User(
-        username='bobbie',name='Boobert', email='bobbie@aa.io', password='password', created_at=datetime.today())
+    steve = User(
+        username='SteveJobs', name='Steve Jobs', email='steve@apple.com', password='password', created_at=datetime.today())
+    elon = User(
+        username='ElonMusk', name='Elon Musk', email='elon@tesla.com', password='password', created_at=datetime.today())
+    oprah = User(
+        username='OprahWinfrey', name='Oprah Winfrey', email='oprah@own.tv', password='password', created_at=datetime.today())
+    jordan = User(
+        username='MichaelJordan', name='Michael Jordan', email='michael@airjordan.com', password='password', created_at=datetime.today())
+    madonna = User(
+        username='Madonna', name='Madonna', email='madonna@singer.com', password='password', created_at=datetime.today())
+    beyonce = User(
+        username='Beyonce', name='Beyoncé', email='beyonce@singer.com', password='password', created_at=datetime.today())
+    cristiano = User(
+        username='CristianoRonaldo', name='Cristiano Ronaldo', email='cristiano@soccer.com', password='password', created_at=datetime.today())
+    bill = User(
+        username='BillGates', name='Bill Gates', email='bill@microsoft.com', password='password', created_at=datetime.today())
+    jim = User(
+        username='JimCarrey', name='Jim Carrey', email='jim@actor.com', password='password', created_at=datetime.today())
+    dwayne = User(
+        username='DwayneJohnson', name='Dwayne Johnson', email='dwayne@actor.com', password='password', created_at=datetime.today())
+    serena = User(
+        username='SerenaWilliams', name='Serena Williams', email='serena@tennis.com', password='password', created_at=datetime.today())
+    dali = User(
+        username='SalvadorDali', name='Salvador Dalí', email='dali@artist.com', password='password', created_at=datetime.today())
+    taylor = User(
+        username='TaylorSwift', name='Taylor Swift', email='taylor@singer.com', password='password', created_at=datetime.today())
+    kobe = User(
+        username='KobeBryant', name='Kobe Bryant', email='kobe@nba.com', password='password', created_at=datetime.today())
 
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(steve)
+    db.session.add(elon)
+    db.session.add(oprah)
+    db.session.add(jordan)
+    db.session.add(madonna)
+    db.session.add(beyonce)
+    db.session.add(cristiano)
+    db.session.add(bill)
+    db.session.add(jim)
+    db.session.add(dwayne)
+    db.session.add(serena)
+    db.session.add(dali)
+    db.session.add(taylor)
+    db.session.add(kobe)
+
     db.session.commit()
 
 
