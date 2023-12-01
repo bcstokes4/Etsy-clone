@@ -8,6 +8,7 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.products_routes import product_routes
+from .api.reviews_route import review_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -30,6 +31,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(product_routes, url_prefix='/api/products')
+app.register_blueprint(review_routes, url_prefix='/api/reviews')
 db.init_app(app)
 Migrate(app, db)
 
@@ -88,14 +90,14 @@ def react_root(path):
     return app.send_static_file('index.html')
 
 
-@app.errorhandler(404)
-def not_found(e):
-    return app.send_static_file('index.html')
+# @app.errorhandler(404)
+# def not_found(e):
+#     return app.send_static_file('index.html')
 
-@app.errorhandler(403)
-def unauthorized(e):
-    return app.send_static_file('index.html')
+# @app.errorhandler(403)
+# def unauthorized(e):
+#     return app.send_static_file('index.html')
 
-@app.errorhandler(400)
-def bad_request(e):
-    return app.send_static_file('index.html')
+# @app.errorhandler(400)
+# def bad_request(e):
+#     return app.send_static_file('index.html')

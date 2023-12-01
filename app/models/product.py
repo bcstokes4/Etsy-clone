@@ -30,10 +30,7 @@ class Product(db.Model):
             'body': self.body,
             'price': self.price,
             'category': self.category,
-            'created_at': self.created_at,
-            # 'reviews': [review.to_dict() for review in self.reviews],
-            # 'user': self.user.to_dict(),
-            # 'favorites': self.favorites is not None
+            'created_at': self.created_at
             }
         
     def to_dict_detailed(self):
