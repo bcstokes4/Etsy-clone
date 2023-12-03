@@ -14,3 +14,11 @@ class ProductImage(db.Model):
     preview_image = db.Column(db.Boolean, nullable=False)
     
     product = db.relationship("Product", back_populates='images', )
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "product_id": self.product_id,
+            "product_image": self.product_image,
+            "preview_image": self.preview_image
+        }

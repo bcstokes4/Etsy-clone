@@ -26,6 +26,7 @@ mako = "==1.2.4"
 markupsafe = "==2.1.2"
 werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
+botocore = "*"
 
 [dev-packages]
 

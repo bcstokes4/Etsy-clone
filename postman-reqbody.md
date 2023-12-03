@@ -13,3 +13,8 @@ product
     "price": 100,
     "category": "football"
 }
+
+{
+    "address": "123 Testing Lane",
+    "price": 500.00
+}
