@@ -22,6 +22,13 @@ class Product(db.Model):
     favorites = db.relationship("User", secondary=favorites, back_populates='favorites')
     reviews = db.relationship("Review", back_populates="product", cascade="all, delete")
     
+    @property
+    def preview_image(self):
+        for image in self.images:
+            if image.preview_image:
+                return image.to_dict()
+        return None
+    
     def to_dict(self):
         return {
             'id': self.id,
@@ -30,7 +37,8 @@ class Product(db.Model):
             'body': self.body,
             'price': self.price,
             'category': self.category,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'preview_image': self.preview_image
             }
         
     def to_dict_detailed(self):

@@ -1,22 +1,22 @@
 from app.models import db, ProductImage, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
-
+import csv
 
 def seed_products_images():
-    demo = ProductImage(
-        product_id = 1,
-        product_image = 'abc.com',
-        preview_image = True
-        )
-    demo2 = ProductImage(
-        product_id = 2,
-        product_image = 'abc.com',
-        preview_image = True
-        )
+    with open("app/seeds/csv-files/product_image_seed.csv", "r") as file:
+        csvreader = csv.reader(file)
+        for order_row in csvreader:
+                try:
+                    image = ProductImage(
+                        product_id=int(order_row[0]),
+                        product_image=order_row[1],
+                        preview_image=True, 
+                    )
+                    db.session.add(image)
+                except (ValueError, IndexError) as e:
+                    print(f"Error processing row: {order_row}. Details: {e}")
 
-    db.session.add(demo)
-    db.session.add(demo2)
     db.session.commit()
 
 def undo_products_images():

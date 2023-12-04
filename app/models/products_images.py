@@ -1,6 +1,6 @@
 from . import db, add_prefix_for_prod
 from .db import environment, SCHEMA
-
+from sqlalchemy import UniqueConstraint
 
 class ProductImage(db.Model):
     __tablename__ = 'products_images'
@@ -13,7 +13,11 @@ class ProductImage(db.Model):
     product_image = db.Column(db.String(255), nullable=False)
     preview_image = db.Column(db.Boolean, nullable=False)
     
-    product = db.relationship("Product", back_populates='images', )
+    product = db.relationship("Product", back_populates='images')
+    
+    __table_args__ = (
+        UniqueConstraint('product_id', 'preview_image', name='unique_preview_per_product'),
+    )
     
     def to_dict(self):
         return {

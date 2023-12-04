@@ -1,0 +1,15 @@
+.product-div{
+    border: 1px solid rebeccapurple;
+}
+
+.product-div > img{
+    height: 200px;
+    width: 200px;
+}
+.products-main-container{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
