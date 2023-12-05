@@ -77,6 +77,11 @@ const productsReducer = (state = {}, action) => {
                 productsState[product.id] = product
             })
             return productsState
+        case UPDATE_PRODUCT:
+            return {...state, [action.product.id]: action.product}
+        case REMOVE_PRODUCT:
+            const newState = {...state}
+            delete newState[action.id]
         default:
             return state
     }

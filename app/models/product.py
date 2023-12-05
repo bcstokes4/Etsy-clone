@@ -38,7 +38,8 @@ class Product(db.Model):
             'price': self.price,
             'category': self.category,
             'created_at': self.created_at,
-            'preview_image': self.preview_image
+            'preview_image': self.preview_image,
+            'reviews': [review.to_dict() for review in self.reviews],
             }
         
     def to_dict_detailed(self):
@@ -53,5 +54,6 @@ class Product(db.Model):
             'reviews': [review.to_dict() for review in self.reviews],
             'user': self.user.to_dict(),
             'favorites': self.favorites is not None,
+            'preview_image': self.preview_image,
             # 'orders': [order.to_dict_orders_only() for order in self.orders]
         }

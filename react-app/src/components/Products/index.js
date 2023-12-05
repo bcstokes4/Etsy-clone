@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/products"
+import ProductTile from "./product-tile";
 import "./index.css"
 function AllProducts(){
     const dispatch = useDispatch()
@@ -16,10 +17,7 @@ function AllProducts(){
         <div className="products-main-container">
         <h1>Products</h1>
         {products && products.map( product => (
-            <div className="product-div">
-                {product.name}
-                {product.preview_image && <img src={product.preview_image.product_image} alt={product.name}/>}
-            </div>
+            <ProductTile product={product}/>
         ))}
         </div>
         </>
