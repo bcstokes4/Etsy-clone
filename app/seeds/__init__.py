@@ -34,7 +34,7 @@ def seed():
     seed_products()
     seed_favorites()
     seed_orders_products()
-    seed_products_images()
+    # seed_products_images()
     seed_reviews()
     # Add other seed functions here
 
@@ -43,7 +43,7 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_reviews()
-    undo_products_images()
+    # undo_products_images()
     undo_orders_products()
     undo_favorites()
     undo_products()
