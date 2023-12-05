@@ -42,4 +42,12 @@ class Order(db.Model):
             'price': self.price,
             'created_at': self.created_at
         }
-        
+    def to_dict_no_relationships(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'is_completed': self.is_completed,
+            'address': self.address,
+            'price': self.price,
+            'created_at': self.created_at
+        }

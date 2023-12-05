@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 0e4b38485c69
+Revision ID: cf24609f76d0
 Revises: 
-Create Date: 2023-11-30 17:21:19.419667
+Create Date: 2023-12-04 10:30:39.291338
 
 """
 from alembic import op
@@ -12,7 +12,7 @@ import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 # revision identifiers, used by Alembic.
-revision = '0e4b38485c69'
+revision = 'cf24609f76d0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -95,7 +95,8 @@ def upgrade():
     sa.Column('product_image', sa.String(length=255), nullable=False),
     sa.Column('preview_image', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ondelete='CASCADE'),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('product_id', 'preview_image', name='unique_preview_per_product')
     )
     
     if environment == "production":
@@ -115,6 +116,7 @@ def upgrade():
     
     if environment == "production":
         op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+        
     # ### end Alembic commands ###
 
 
@@ -128,3 +130,4 @@ def downgrade():
     op.drop_table('orders')
     op.drop_table('users')
     # ### end Alembic commands ###
+

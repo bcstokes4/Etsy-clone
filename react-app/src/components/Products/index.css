@@ -1,0 +1,35 @@
+.product-div{
+    border: 1px solid rebeccapurple;
+}
+
+.product-tile > img{
+    height: 200px;
+    width: 200px;
+}
+.product-tile{
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+}
+.products-main-container{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.pd-top{
+    display: flex;
+    gap: 200px;
+}
+.seller-info-container{
+    display: flex;
+    gap: 30px;
+}
+.seller-info-container > img {
+    border-radius: 25px;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
