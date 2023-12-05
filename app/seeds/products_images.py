@@ -11,7 +11,7 @@ def seed_products_images():
                     image = ProductImage(
                         product_id=int(order_row[0]),
                         product_image=order_row[1],
-                        preview_image=True, 
+                        preview_image=order_row[2], 
                     )
                     db.session.add(image)
                 except (ValueError, IndexError) as e:
