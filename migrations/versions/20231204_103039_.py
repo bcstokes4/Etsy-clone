@@ -54,7 +54,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
-    sa.Column('body', sa.String(length=255), nullable=False),
+    sa.Column('body', sa.String(length=400), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('category', sa.String(length=50), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
