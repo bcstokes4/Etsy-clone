@@ -1,0 +1,11 @@
+.user-product-container{
+    display: flex;
+}
+.user-product-container >img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.product-text-container {
+    width: 400px;
+}

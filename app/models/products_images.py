@@ -15,9 +15,7 @@ class ProductImage(db.Model):
     
     product = db.relationship("Product", back_populates='images')
     
-    __table_args__ = (
-        UniqueConstraint('product_id', 'preview_image', name='unique_preview_per_product'),
-    )
+    
     
     def to_dict(self):
         return {

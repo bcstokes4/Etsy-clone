@@ -28,6 +28,8 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'name': self.name,
+            'products': [product.to_dict() for product in self.products],
+            'orders': [order.to_dict_no_user() for order in self.orders]
         }
         
         
@@ -42,12 +44,3 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            "name": self.name,
-            'username': self.username,
-            'email': self.email,
-            'profile_picture': self.profile_picture,
-            'created_at': self.created_at
-        }

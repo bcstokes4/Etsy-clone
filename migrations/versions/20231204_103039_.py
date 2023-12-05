@@ -95,8 +95,7 @@ def upgrade():
     sa.Column('product_image', sa.String(length=255), nullable=False),
     sa.Column('preview_image', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ondelete='CASCADE'),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('product_id', 'preview_image', name='unique_preview_per_product')
+    sa.PrimaryKeyConstraint('id')
     )
     
     if environment == "production":
