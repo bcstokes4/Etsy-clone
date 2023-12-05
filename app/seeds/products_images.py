@@ -7,17 +7,13 @@ def seed_products_images():
     with open("app/seeds/csv-files/product_image_seed.csv", "r") as file:
         csvreader = csv.reader(file)
         for order_row in csvreader:
-                try:
                     image = ProductImage(
                         product_id=int(order_row[0]),
                         product_image=order_row[1],
                         preview_image=bool(order_row[2]), 
                     )
                     db.session.add(image)
-                except (ValueError, IndexError) as e:
-                    print(f"Error processing row: {order_row}. Details: {e}")
-
-    db.session.commit()
+                    db.session.commit()
 
 def undo_products_images():
     if environment == "production":
