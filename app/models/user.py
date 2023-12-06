@@ -29,7 +29,8 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'name': self.name,
             'products': [product.to_dict() for product in self.products],
-            'orders': [order.to_dict_no_user() for order in self.orders]
+            'orders': [order.to_dict_no_user() for order in self.orders],
+            'profile_picture': self.profile_picture
         }
         
         

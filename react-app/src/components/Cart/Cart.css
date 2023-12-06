@@ -1,0 +1,11 @@
+.cart_modal{
+    width: 400px;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cart-image{
+    width: 75px;
+    height: 75px;
+}

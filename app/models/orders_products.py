@@ -29,5 +29,8 @@ class OrderProduct(db.Model):
         return self.order.to_dict()
     
     def to_dict_products_only(self):
-        return self.product.to_dict()
+        return {
+            'product': self.product.to_dict(),
+            'quantity': self.quantity
+            }
     

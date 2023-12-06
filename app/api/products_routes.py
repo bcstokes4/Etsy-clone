@@ -43,7 +43,6 @@ def create_one_product():
             category = data["category"],
             created_at = datetime.now()
         )
-        req = request.get_json()
         
         db.session.add(new_product)
         db.session.commit()
