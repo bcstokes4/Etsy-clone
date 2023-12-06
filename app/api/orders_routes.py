@@ -48,7 +48,7 @@ def create_order_for_user():
         
         req = request.get_json()
         products = req["products"]
-        
+        print('PRODUCTS', products)
         for product in products:
             new_order_product = OrderProduct(
                 product_id = product['id'],

@@ -17,7 +17,7 @@ function AllProducts(){
         <div className="products-main-container">
         <h1>Products</h1>
         {products && products.map( product => (
-            <ProductTile product={product}/>
+            <ProductTile product={product} key={product.id}/>
         ))}
         </div>
         </>

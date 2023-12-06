@@ -37,6 +37,18 @@ export const fetchEditProductImage = (productId, imageId, payload) => async (dis
     }
     // return data
 }
+
+export const fetchCreateProductImage = (productId, payload) => async (dispatch) => {
+    const res = await fetch(`api/products/${productId}/images`, {
+        method: "POST",
+        body: payload
+    })
+    const data = await res.json()
+    if (res.ok){
+        return data
+    }
+    // return data
+}
 // THUNKS
 
 export const fetchProducts = () => async (dispatch) => {

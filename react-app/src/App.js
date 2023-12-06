@@ -8,7 +8,7 @@ import Navigation from "./components/Navigation";
 import AllProducts from './components/Products'
 import ProductDetails from "./components/Products/product-details";
 import ProfilePage from "./components/ProfilePage/profile-page";
-
+import CheckoutProduct from "./components/Checkout/Checkout";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +24,9 @@ function App() {
         <Switch>
           <Route exact path="/products">
             <AllProducts/>
+          </Route>
+          <Route exact path="/checkout">
+            <CheckoutProduct/>
           </Route>
           <Route path='/current'>
             <ProfilePage/>

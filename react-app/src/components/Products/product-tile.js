@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom"
 import "./index.css"
-
+import ProductModalButton from "./product-modal-button"
+import ProductModal from "./product-modal"
 
 function ProductTile({product}) {
     const history = useHistory()
@@ -8,8 +9,11 @@ function ProductTile({product}) {
         history.push(`/products/${product.id}`)
     }
 return (
-    <div className="product-tile" onClick={directToProductDetails}>
-    <h2>{product.name}</h2>
+    // <div className="product-tile" onClick={directToProductDetails}>
+    <ProductModalButton
+    buttonText={
+      <>
+      <h2>{product.name}</h2>
     <img src={product.preview_image.product_image}/>
     {product?.reviews?.length ? (
           <span className="product-rating">
@@ -18,8 +22,12 @@ return (
               product.reviews.length
             ).toFixed(1)}
           </span>
-        ) : null}
-</div>
+        ) : <p>Be the first to order and leave a review!</p>}
+      </>
+    }
+    modalComponent={<ProductModal product={product}/>}
+    />
+    // </div>
 )
 }
 

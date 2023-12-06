@@ -6,6 +6,7 @@ import {
   fetchCreateProduct,
   fetchUpdateProduct,
   fetchEditProductImage,
+  fetchCreateProductImage
 } from "../../store/products";
 import { getCurr } from "../../store/session";
 import { useHistory } from "react-router-dom";
@@ -17,8 +18,9 @@ function ProductForm({ product, formAction }) {
 
   const [name, setName] = useState(formAction == "edit" ? product.name : "");
   const [body, setBody] = useState(formAction == "edit" ? product.body : "");
-  const [price, setPrice] = useState(formAction == "edit" ? product.price : "");
-  const [category, setCategory] = useState(
+  const [price, setPrice] = useState(
+    formAction === "edit" ? Number(product.price).toFixed(2) : ""
+  );  const [category, setCategory] = useState(
     formAction == "edit" ? product.category : ""
   );
   const [previewImage, setPreviewImage] = useState(
@@ -32,16 +34,46 @@ function ProductForm({ product, formAction }) {
   const [imageLoading, setImageLoading] = useState(false);
 
   function onFileChange(e) {
-    setPreviewImage(e.target.files[0]);
+    if(!e.target.files[0]) {
+      setPreviewImage(null)
+      setLocalImage(null)
+    }
+    else {
+      setPreviewImage(e.target.files[0]);
     setLocalImage(URL.createObjectURL(e.target.files[0]));
+    }
   }
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const errorsObj = {};
 
     // PLACE ERROR HANDLING HERE!!!!!!
+    if(!/\.\d{2}$/.test(price.toString())){
+      errorsObj.price = 'Price must be in the format $19.99 (2 decimal places)'
+    }
+    if(!price) {
+      errorsObj.price = 'Price is required'
+    }
+    if(!name){
+      errorsObj.name = 'Name is required'
+    }
+    if(name.length > 100){
+      errorsObj.name = 'Name must be less than 100 characters'
+    }
+    if(!body){
+      errorsObj.body = 'Description is required'
+    }
+    if(body.length > 255){
+      errorsObj.body = 'Description must be less than 255 characters'
+    }
+    if(!category){
+      errors.localImage = 'Product Category is required'
+    }
+    if (!previewImage || previewImage === null || previewImage === undefined) {
+      errorsObj.image = 'Product Image is required';
+    }
 
     if (!Object.keys(errorsObj).length) {
       const form = new FormData();
@@ -67,10 +99,15 @@ function ProductForm({ product, formAction }) {
         // history.push(`/products/${product.id}`)
         closeModal();
       } else {
-        const res = await dispatch(fetchCreateProduct(form));
-        history.push(`/products/${res.id}`);
+        const res = await dispatch(fetchCreateProduct(form))
+        await dispatch(fetchCreateProductImage(res.id, imageForm))
+        await dispatch(getCurr())
+        // history.push(`/products/${res.id}`);
         closeModal();
       }
+    }
+    else {
+      setErrors(errorsObj)
     }
   };
 
@@ -85,6 +122,7 @@ function ProductForm({ product, formAction }) {
             onChange={(e) => setName(e.target.value)}
           />
         </label>
+        {errors.name && <p>{errors.name}</p>}
         <label>
           Body
           <textarea
@@ -93,8 +131,10 @@ function ProductForm({ product, formAction }) {
             onChange={(e) => setBody(e.target.value)}
           />
         </label>
+        {errors.body && <p>{errors.body}</p>}
+
         <label>
-          Price
+          Price $
           <input
             type="number"
             step="0.01"
@@ -102,6 +142,7 @@ function ProductForm({ product, formAction }) {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
+          {errors.price && <p>{errors.price}</p>}
         </label>
         <label className="form_element">
           <h3 className="form_text_product">Category</h3>
@@ -128,6 +169,8 @@ function ProductForm({ product, formAction }) {
             <option value="Other">Other</option>
           </select>
         </label>
+        {errors.category && <p>{errors.category}</p>}
+
         <label className="item-form-labels">
           Upload Image
           <input
@@ -143,7 +186,7 @@ function ProductForm({ product, formAction }) {
             </div>
           )}
         </label>
-
+            {errors.image && <p>{errors.image}</p>}
         <button className="item-submit-button">Submit</button>
         {imageLoading && <p>Image is Loading...</p>}
       </form>
