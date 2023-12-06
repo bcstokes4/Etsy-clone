@@ -2,7 +2,6 @@ from app.models import db, Product, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import datetime
 import csv
-
 # Categories: [football, soccer, baseball, basketball, track, swimming, lacrosse, other]
 
 def seed_products():

@@ -4,6 +4,8 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import CartModal from "../Cart/cart-modal";
+import { Link } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,10 +45,25 @@ function ProfileButton({ user }) {
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
+      <OpenModalButton
+        buttonText={
+          <>
+            <i className="fa-solid fa-cart-shopping"></i>{" "}
+            {/* {cartQty == 1 ? `${cartQty} Item` : `${cartQty} Items`} */}
+          </>
+        }
+        onItemClick={closeMenu}
+        modalComponent={<CartModal />}
+      />
         {user ? (
           <>
             <li>{user.username}</li>
             <li>{user.email}</li>
+            <li>
+              <Link onClick={closeMenu} to="/current">
+                My Profile
+              </Link>
+            </li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
