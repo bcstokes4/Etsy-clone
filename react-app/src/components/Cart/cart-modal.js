@@ -25,7 +25,7 @@ function CartModal() {
     });
     setTotal(parseFloat(newTotal.toFixed(2)));
   }, [cart]);
-
+  console.log('cart items', cartItems)
   return (
     <div className="cart_modal">
       <div className="all_cart_items">
@@ -34,6 +34,7 @@ function CartModal() {
             <>
             <p>{item.name}</p>
             <img src={item.preview_image.product_image} className="cart-image"/>
+            <p>Quantity: {item.qty}</p>
             </>
           ))
         ) : (
