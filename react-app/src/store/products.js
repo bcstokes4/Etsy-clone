@@ -25,7 +25,18 @@ export const removeProduct = (id) => ({
     id
 })
 
-
+// PRODUCT IMAGE THUNKS
+export const fetchEditProductImage = (productId, imageId, payload) => async (dispatch) => {
+    const res = await fetch(`api/products/${productId}/images/${imageId}`, {
+        method: "POST",
+        body: payload
+    })
+    const data = await res.json()
+    if (res.ok){
+        return data
+    }
+    // return data
+}
 // THUNKS
 
 export const fetchProducts = () => async (dispatch) => {
@@ -42,6 +53,7 @@ export const fetchCreateProduct = (payload) => async (dispatch) => {
     const data = await res.json()
     if (res.ok){
         dispatch(receiveProduct(data))
+        return data
     }
     // return data
 }
@@ -59,7 +71,7 @@ export const fetchUpdateProduct = (productId, payload) => async (dispatch) => {
 }
 
 export const fetchDeleteProduct = (id) => async (dispatch) => {
-    const res = await fetch(`api/restaurants/${id}`, {
+    const res = await fetch(`api/products/${id}`, {
         method: "DELETE"
     })
     if (res.ok) dispatch(removeProduct(id))

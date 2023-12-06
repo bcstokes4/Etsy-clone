@@ -28,6 +28,14 @@ export const authenticate = () => async (dispatch) => {
 		dispatch(setUser(data));
 	}
 };
+export const getCurr = () => async (dispatch) => {
+	const response = await fetch("/api/auth/current");
+	if (response.ok) {
+	  const data = await response.json();
+	  dispatch(setUser(data));
+	  return null;
+	}
+  };
 
 export const login = (email, password) => async (dispatch) => {
 	const response = await fetch("/api/auth/login", {

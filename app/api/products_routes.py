@@ -69,13 +69,17 @@ def update_one_product(productId):
         
         product.name = data["name"]
         product.body = data["body"]
-        product.price = data["price"]
+        product.price = float(data["price"])
         product.category = data["category"]
         product.created_at = datetime.now()
-    
+
         db.session.commit()
 
-        return product.to_dict()
+        return product.to_dict(), 200
+    if form.errors:
+        print(form.errors)
+        return form.errors, 400
+    
 
 @product_routes.route('/<int:productId>', methods=["DELETE"])
 @login_required
@@ -251,7 +255,8 @@ def edit_one_image(productId, imageId):
         return product_image.to_dict(), 200
     
     if form.errors:
-        return form.errors
+        print(form.errors)
+        return form.errors, 400
     
     
     

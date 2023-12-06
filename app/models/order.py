@@ -40,7 +40,8 @@ class Order(db.Model):
             'is_complete': self.is_completed,
             'address': self.address,
             'price': self.price,
-            'created_at': self.created_at
+            'created_at': self.created_at,
+            'products': [product.to_dict_products_only() for product in self.products]
         }
     def to_dict_no_relationships(self):
         return {

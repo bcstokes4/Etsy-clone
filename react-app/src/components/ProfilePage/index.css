@@ -9,3 +9,10 @@
 .product-text-container {
     width: 400px;
 }
+
+.user-order-container{
+    display: flex;
+}
+.order-text-container {
+    width: 400px;
+}
