@@ -13,11 +13,16 @@ function ProfilePage() {
   const sessionUser = useSelector((state) => state.session.user);
   const products = useSelector((state) => state.products);
   useEffect(() => {
+    dispatch(getCurr())
+  }, [dispatch])
+  useEffect(() => {
     if (!sessionUser) {
       history.push("/products");
     }
   }, [sessionUser, history, dispatch]);
   if (!sessionUser) return null;
+
+
   return (
     <div className="profile-main-container">
       <div className="user-profile-container">

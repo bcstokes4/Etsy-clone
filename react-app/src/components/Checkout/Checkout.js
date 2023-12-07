@@ -33,17 +33,6 @@ function CheckoutProduct() {
   });
 
 
-
- 
-//     let productsArr = Object.values(productOrders)
-//     let total = 0
-//     console
-//     // productsArr.forEach( productObj => {
-        
-//     //     console.log(productObj.price, 'TESTING HERE')
-    
-//   })
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -61,18 +50,21 @@ function CheckoutProduct() {
 
     setErrors(errorsObj);
     let total = 0
-    const productsArr = cartProducts.map((product) => ({
+    const productsArr = cartProducts.map((product) => {
+      const totalPriceForProduct = product.price * product.qty;
+      total += totalPriceForProduct; 
+      return {
         id: product.id,
         quantity: product.qty,
-        // Add other necessary fields from product object
-      }));
+      };
+    });
       
     const bodyOrder = {
         'user_id': user.user.id,
         'is_completed': false,
         'address': address,
-        'price': 1.00,
-        created_at: new Date(),
+        'price': total.toFixed(2),
+        'created_at': new Date(),
         'products': productsArr
     }
     console.log(bodyOrder)
@@ -80,7 +72,7 @@ function CheckoutProduct() {
 
     if (!res.errors) {
       await dispatch(clearCart());
-    //   history.push("/current");
+      history.push("/current");
     } else {
       errorsObj.errors = res.errors;
       setErrors(errorsObj);
