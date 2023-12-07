@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { fetchDeleteProduct } from "../../store/products";
 import React from "react";
@@ -8,7 +8,7 @@ import { getCurr } from "../../store/session";
 const DeleteModal = ({ id }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const product = useSelector((state) => state.product);
+  // const product = useSelector((state) => state.product);
 //   const item = Object.values(restaurant.items).find((item) => item.id == id);
   const onDelete = async (e) => {
     e.preventDefault(e);

@@ -15,7 +15,7 @@ function CheckoutProduct() {
   const { setModalContent } = useModal();
 
   useEffect(() => {
-    // Dispatch the loadCart action when the component mounts
+    // Dispatch the loadCart upon mount
     dispatch(loadCartThunk());
   }, [dispatch]);
 
@@ -86,7 +86,7 @@ function CheckoutProduct() {
         {cartProducts.map((productObj) => (
           <div className="checkout-product">
             <h3>{productObj.name}</h3>
-            <img src={productObj.preview_image.product_image} />
+            <img src={productObj.preview_image.product_image} alt='product'/>
             <p>Quantity: {productObj.qty}</p>
           </div>
         ))}

@@ -30,6 +30,7 @@ class User(db.Model, UserMixin):
             'name': self.name,
             'products': [product.to_dict() for product in self.products],
             'orders': [order.to_dict_no_user() for order in self.orders],
+            'favorites': [favorite.to_dict() for favorite in self.favorites],
             'profile_picture': self.profile_picture
         }
         

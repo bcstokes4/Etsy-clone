@@ -9,25 +9,25 @@ import {
   fetchCreateProductImage
 } from "../../store/products";
 import { getCurr } from "../../store/session";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 function ProductForm({ product, formAction }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
   const { closeModal } = useModal();
 
-  const [name, setName] = useState(formAction == "edit" ? product.name : "");
-  const [body, setBody] = useState(formAction == "edit" ? product.body : "");
+  const [name, setName] = useState(formAction === "edit" ? product.name : "");
+  const [body, setBody] = useState(formAction === "edit" ? product.body : "");
   const [price, setPrice] = useState(
     formAction === "edit" ? Number(product.price).toFixed(2) : ""
   );  const [category, setCategory] = useState(
-    formAction == "edit" ? product.category : ""
+    formAction === "edit" ? product.category : ""
   );
   const [previewImage, setPreviewImage] = useState(
-    formAction == "edit" ? product.preview_image.product_image : null
+    formAction === "edit" ? product.preview_image.product_image : null
   );
   const [localImage, setLocalImage] = useState(
-    formAction == "edit" ? product.preview_image.product_image : null
+    formAction === "edit" ? product.preview_image.product_image : null
   );
 
   const [errors, setErrors] = useState({});
@@ -90,9 +90,9 @@ function ProductForm({ product, formAction }) {
       
       setImageLoading(true);
 
-      if (formAction == "edit") {
+      if (formAction === "edit") {
         await dispatch(fetchUpdateProduct(product.id, form));
-        if (previewImage != localImage){
+        if (previewImage !== localImage){
           await dispatch(fetchEditProductImage(product.id,product.preview_image.id, imageForm))
         }
         await dispatch(getCurr())

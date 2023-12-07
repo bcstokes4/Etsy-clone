@@ -1,7 +1,104 @@
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 50px; 
+  background-color: #f0f0f0; 
+}
+#sporthub-link{
+  font-size: 30px;
+  color: #F1641E
+}
+
+#navbar a {
+  text-decoration: none;
+  margin-left: 0;
+  font-weight: bold;
+}
+
 .profile-dropdown {
   position: absolute;
 }
 
 .hidden {
   display: none;
+}
+
+
+#nav-buttons {
+  display: flex;
+  align-items: center;
+}
+
+#nav-buttons .cart-icon-container {
+  position: relative;
+  margin-right: 10px;
+}
+
+#nav-buttons .unique-items-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #F1641E;
+  color: white;
+  border-radius: 50%;
+  width: 17px;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+#nav-buttons button {
+  font-size: 20px; 
+  color: black; 
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 60px; 
+  right: 0;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 0; 
+  min-width: 150px;
+}
+
+.profile-dropdown li {
+  list-style: none;
+  padding: 0; 
+  border-bottom: 1px solid #ddd; 
+}
+
+.profile-dropdown li a {
+  display: block;
+  padding: 10px; 
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+#loginButton{
+  display: block;
+  padding: 10px; 
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+.profile-dropdown li a:hover {
+  background-color: #f5f5f5; 
+}
+.profile-dropdown li button:hover {
+  background-color: #f5f5f5;
+}
+.profile-link > a{
+  margin-left: 0;
 }

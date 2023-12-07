@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 // import CartItem from "./CartItem";
-import { Link, useHistory } from "react-router-dom/";
+import { useHistory } from "react-router-dom/";
 import "./Cart.css";
 import { clearCart } from "../../store/cart";
 import React from "react";
@@ -24,7 +24,7 @@ function CartModal() {
       newTotal += parseFloat((item.price * parseInt(item.qty)).toFixed(2));
     });
     setTotal(parseFloat(newTotal.toFixed(2)));
-  }, [cart]);
+  }, [cart, cartItems]);
   console.log('cart items', cartItems)
   return (
     <div className="cart_modal">
@@ -33,7 +33,7 @@ function CartModal() {
           cartItems.map((item) => (
             <>
             <p>{item.name}</p>
-            <img src={item.preview_image.product_image} className="cart-image"/>
+            <img src={item.preview_image.product_image} className="cart-image" alt='product'/>
             <p>Quantity: {item.qty}</p>
             </>
           ))
@@ -53,7 +53,7 @@ function CartModal() {
           e.preventDefault();
         } else {
           closeModal();
-          // Redirect to '/checkout' programmatically
+          // Redirect to '/checkout' 
           history.push('/checkout');
         }
       }}

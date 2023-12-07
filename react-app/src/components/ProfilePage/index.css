@@ -53,3 +53,8 @@
     font-weight: bold;
   }
   
+  .favorites-container{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  

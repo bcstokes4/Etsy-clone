@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import ProductForm from "../Forms/ProductForm";
+import ProductTile from "../Products/product-tile";
 import OpenModalButton from "../OpenModalButton";
 import DeleteModal from "../Modal/delete-product-modal";
 import { getCurr } from "../../store/session";
@@ -12,9 +13,12 @@ function ProfilePage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const products = useSelector((state) => state.products);
+  const favorites = sessionUser?.favorites;
+ 
+  
   useEffect(() => {
-    dispatch(getCurr())
-  }, [dispatch])
+    dispatch(getCurr());
+  }, [dispatch]);
   useEffect(() => {
     if (!sessionUser) {
       history.push("/products");
@@ -36,7 +40,12 @@ function ProfilePage() {
           modalComponent={<ProductForm formAction={"create"} />}
         />
       </div>
-
+        <h2>My Favorites</h2>
+      <div className="favorites-container">
+        {favorites.map((product) => (
+          <ProductTile product={product} key={product.id}/>
+        ))}
+      </div>
       <div className="orders-container">
         <h2>Orders</h2>
         <div>
@@ -60,7 +69,7 @@ function ProfilePage() {
                       <p>Quantity: {product.quantity}</p>
                     </div>
                   ))}
-                  <p>Total: {order.price}</p>
+                <p>Total: {order.price}</p>
               </div>
             ))}
         </div>

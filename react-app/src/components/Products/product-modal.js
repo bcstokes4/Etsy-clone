@@ -11,6 +11,7 @@ function ProductModal({ product }) {
   const dispatch = useDispatch();
   const [Qty, setQty] = useState(1);
 
+
   const options = () => {
     const optionsArr = [];
     for (let i = 1; i < 101; i++) {
