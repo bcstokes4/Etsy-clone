@@ -50,5 +50,35 @@
     background-color: #e0e0e0; /* Change background color on hover */
   }
   
-  
-  
+  .pd-top{
+    display: flex;
+    flex-direction: row;
+  }
+  .pd-top > * {
+    width: 50%;
+  }
+  .prod-det-left-container{
+    display: flex;
+    flex-direction: column;
+  }
+  .prod-det-left-container > img {
+    width: 250px;
+  }
+  .add-to-cart-overlay-user-profile{
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    /* Additional button-like styles */
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #333; /* Adjust the text color */
+    width: 70px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
