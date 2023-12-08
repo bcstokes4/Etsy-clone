@@ -111,3 +111,7 @@
   .prod-det-left-container .fa-heart {
     display: block; 
   }
+
+  .seller-info-container:hover{
+    cursor: pointer;
+  }

@@ -9,6 +9,8 @@ import AllProducts from './components/Products'
 import ProductDetails from "./components/Products/product-details";
 import ProfilePage from "./components/ProfilePage/profile-page";
 import CheckoutProduct from "./components/Checkout/Checkout";
+import OtherUserPage from "./components/OtherUserPage/other-user-page";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +35,9 @@ function App() {
           </Route>
           <Route path="/products/:productId">
             <ProductDetails/>
+          </Route>
+          <Route path='/users/:userId'>
+            <OtherUserPage/>
           </Route>
           <Route path="/login" >
             <LoginFormPage />

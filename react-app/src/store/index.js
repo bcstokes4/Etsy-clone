@@ -4,9 +4,11 @@ import session from './session'
 import productsReducer from './products';
 import singleProductReducer from './product';
 import cartReducer from './cart';
+import OtherUserReducer from './user';
 
 const rootReducer = combineReducers({
   session,
+  otherUser: OtherUserReducer,
   products: productsReducer,
   product: singleProductReducer,
   cart: cartReducer

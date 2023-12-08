@@ -61,6 +61,10 @@ function ProductDetails() {
   }, [dispatch]);
 
   if (!product?.id) return null;
+
+  const redirectToUserPage = (userId) => {
+    history.push(`/users/${userId}`)
+  }
   
   return (
     <div className="product-details-main-container">
@@ -85,7 +89,9 @@ function ProductDetails() {
           </div>
         </div>
           <div className="prod-det-right-container">
-            <div className="seller-info-container">
+            <div className="seller-info-container"
+            onClick={() => redirectToUserPage(product.user.id)}
+            >
               <h2>Seller: {product.user.name}</h2>
               {product.user?.profile_picture && (
                 <img src={product.user?.profile_picture} />

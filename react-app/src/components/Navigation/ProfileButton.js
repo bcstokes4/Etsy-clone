@@ -79,6 +79,11 @@ function ProfileButton({ user }) {
           <li>{user?.username}</li>
           <li>{user?.email}</li>
           <li>
+            <Link onClick={closeMenu} to="/products" className='profile-link'>
+              Products
+            </Link>
+          </li>
+          <li>
             <Link onClick={closeMenu} to="/current" className='profile-link'>
               My Profile
             </Link>

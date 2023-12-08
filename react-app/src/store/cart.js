@@ -64,7 +64,7 @@ export const loadCartThunk = () => async (dispatch) => {
       const res = await fetch(`/api/products/${product.id}`);
       if (res.ok) {
         const data = await res.json(); //included for test
-        console.log(data, "data");
+        // console.log(data, "data");
         products[product.id] = { ...product, ...data }; //included for test
       }
     }
