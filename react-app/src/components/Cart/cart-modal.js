@@ -2,7 +2,7 @@ import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-// import CartItem from "./CartItem";
+import CartItem from "./cart-item";
 import { useHistory } from "react-router-dom/";
 import "./Cart.css";
 import { clearCart } from "../../store/cart";
@@ -31,11 +31,7 @@ function CartModal() {
       <div className="all_cart_items">
         {cartItems.length ? (
           cartItems.map((item) => (
-            <>
-            <p>{item.name}</p>
-            <img src={item.preview_image.product_image} className="cart-image" alt='product'/>
-            <p>Quantity: {item.qty}</p>
-            </>
+            <CartItem item={item} key={item.id}></CartItem>
           ))
         ) : (
           <p>Nothing in cart yet!</p>

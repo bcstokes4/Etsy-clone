@@ -1,5 +1,5 @@
 import { useHistory, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import ProductModalButton from "./product-modal-button";
 import ProductModal from "./product-modal";
 
@@ -15,6 +15,41 @@ function ProductDetails() {
   const user = useSelector((state) => state.session.user);
   const product = useSelector((state) => state.product);
 
+  const [isFavorited, setIsFavorited] = useState(false);
+
+
+  // FAVORITES HELPERS
+  const postFavorite = async (productId) => {
+    const res = await fetch(`/api/favorites/${productId}`, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+    });
+  };
+
+  const deleteFavorite = async (productId) => {
+    const res = await fetch(`/api/favorites/${productId}`, {
+      method: "DELETE",
+      headers: { "Content-type": "application/json" },
+    });
+  };
+
+  const toggleFavorite = () => {
+    if (isFavorited) {
+      deleteFavorite(product.id);
+    } else {
+      postFavorite(product.id);
+    }
+    setIsFavorited((prevState) => !prevState);
+  };
+  useEffect(() => {
+    const isProductFavorited = user?.favorites?.some(
+      (favorite) => favorite.id === product.id
+    );
+    setIsFavorited(isProductFavorited);
+  }, [product.id, user?.favorites]);
+
+
+
   useEffect(() => {
     const initialFetch = async () => {
       const res = await dispatch(fetchOneProduct(productId));
@@ -26,6 +61,7 @@ function ProductDetails() {
   }, [dispatch]);
 
   if (!product?.id) return null;
+  
   return (
     <div className="product-details-main-container">
       <div className="pd-top">
@@ -39,6 +75,13 @@ function ProductDetails() {
               buttonText={"Add to Cart"}
               modalComponent={<ProductModal product={product} />}
             />
+          <i
+          className={isFavorited ? "fa-solid fa-heart" : "fa-regular fa-heart"}
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleFavorite();
+          }}
+        ></i>
           </div>
         </div>
           <div className="prod-det-right-container">

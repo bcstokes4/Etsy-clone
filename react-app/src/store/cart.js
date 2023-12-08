@@ -16,14 +16,14 @@ export const addToCart = (product, qty = 1) => ({
   qty,
 });
 
-export const removeFromCart = (item) => ({
+export const removeFromCart = (product) => ({
   type: REMOVE_FROM_CART,
-  item,
+  product,
 });
 
-export const updateCartQty = (item, qty) => ({
+export const updateCartQty = (product, qty) => ({
   type: UPDATE_CART_ITEM_QTY,
-  item,
+  product,
   qty,
 });
 
