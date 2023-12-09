@@ -31,10 +31,19 @@ class User(db.Model, UserMixin):
             'products': [product.to_dict() for product in self.products],
             'orders': [order.to_dict_no_user() for order in self.orders],
             'favorites': [favorite.to_dict() for favorite in self.favorites],
-            'profile_picture': self.profile_picture
+            'profile_picture': self.profile_picture,
+            'created_at': self.created_at
         }
         
-        
+    def to_dict_protected(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'name': self.name,
+            'products': [product.to_dict() for product in self.products],
+            'profile_picture': self.profile_picture,
+            'created_at': self.created_at
+        }
     @property
     def password(self):
         return self.hashed_password

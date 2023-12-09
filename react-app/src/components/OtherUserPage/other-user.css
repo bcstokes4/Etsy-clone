@@ -1,0 +1,48 @@
+.other-user-main-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 20px;
+  padding: 40px; /* Increased padding for better spacing */
+}
+
+.user-info-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 20px;
+  justify-self: center; /* Center the user info */
+  max-width: 600px; /* Limit the width of the user info */
+}
+
+.user-info-container h2 {
+  margin: 0;
+  font-size: 28px; /* Increased font size for title */
+}
+
+.user-info-container img {
+  width: 120px; /* Slightly larger profile picture */
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-info-container h3 {
+  margin: 0;
+  font-size: 18px; /* Increased font size for date */
+}
+  
+  .products-container {
+    background-color: whitesmoke;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px; 
+  }
+  
+  .products-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  

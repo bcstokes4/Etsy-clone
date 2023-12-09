@@ -25,7 +25,7 @@ function CartModal() {
     });
     setTotal(parseFloat(newTotal.toFixed(2)));
   }, [cart, cartItems]);
-  console.log('cart items', cartItems)
+  
   return (
     <div className="cart_modal">
       <div className="all_cart_items">
@@ -34,13 +34,13 @@ function CartModal() {
             <CartItem item={item} key={item.id}></CartItem>
           ))
         ) : (
-          <p>Nothing in cart yet!</p>
+          <p id="nothin">Nothing in cart yet!</p>
         )}
       </div>
       <div className="cart_buttons">
       {total > 0 && (
   <div>
-    <div>Subtotal ${total}</div>
+    <div id="subtotal">Subtotal: ${total}</div>
     <button
       className="modal_buttons"
       id="checkout-button"

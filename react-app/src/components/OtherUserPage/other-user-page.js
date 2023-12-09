@@ -3,11 +3,28 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getOtherUser } from "../../store/user";
 import ProductTile from "../Products/product-tile";
+import './other-user.css'
 
 function OtherUserPage() {
   const dispatch = useDispatch();
   const otherUser = useSelector((state) => state.otherUser.user);
   const { userId } = useParams();
+
+  const monthsArray = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
+  ];
+  
+  const parts = otherUser?.created_at.split(' ');
+  let monthAbbreviation;
+  let fullMonth;
+  if(parts){
+    monthAbbreviation = parts[2]
+    fullMonth = monthsArray.find(month => month.startsWith(monthAbbreviation.trim()));
+  } 
+  
+  console.log(fullMonth);
 
   useEffect(() => {
     dispatch(getOtherUser(userId));
@@ -20,10 +37,11 @@ function OtherUserPage() {
       <div className="user-info-container">
         <h2>{otherUser.name}</h2>
         <img src={otherUser.profile_picture} alt="" />
+        <h3>Member since {fullMonth} {parts[3]}</h3>
       </div>
 
+        <h2>Their Products</h2>
       <div className="products-container">
-        <h2>Products</h2>
         {otherUser.products.map((product) => {
           return (
             <ProductTile product={product}/>

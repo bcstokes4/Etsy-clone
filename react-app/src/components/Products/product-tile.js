@@ -71,13 +71,14 @@ function ProductTile({ product }) {
         <p>${product.price.toFixed(2)}</p>
         </div>
         {/* Heart icon */}
-        <i
+        {user && <i
           className={isFavorited ? "fa-solid fa-heart" : "fa-regular fa-heart"}
           onClick={(e) => {
             e.stopPropagation();
             toggleFavorite();
           }}
         ></i>
+        }
         {/* {product?.reviews?.length ? (
           <span className="product-rating">
             {(

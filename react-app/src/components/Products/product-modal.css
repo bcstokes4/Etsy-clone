@@ -1,0 +1,60 @@
+/* Product Modal */
+.product-modal-container {
+    position: fixed;
+    top: 50%; /* Adjust as needed */
+    left: 50%; /* Adjust as needed */
+    transform: translate(-50%, -50%);
+    width: 300px; /* Adjust as needed */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-content-container {
+    text-align: center;
+  }
+  
+  .img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 15px;
+  }
+  
+  .pricey {
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    /* color: #f1641e;  */
+  }
+  
+  .quantity {
+    margin-bottom: 15px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .description {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .modal_buttons {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f1641e; 
+    color: white;
+    cursor: pointer;
+  }
+  
+  .modal_buttons:hover {
+    background-color: #c9531a; 
+  }
+  

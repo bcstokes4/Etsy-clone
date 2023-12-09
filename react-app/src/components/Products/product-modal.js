@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import React from "react";
+import './product-modal.css'
 
 function ProductModal({ product }) {
   const cart = useSelector((state) => state.cart);
@@ -51,7 +52,7 @@ function ProductModal({ product }) {
               </option>
             ))}
           </select>
-              <p className="description">Description:</p>
+              {/* <p className="description">Description:</p> */}
             <p>{product.body}</p>
           <button className="modal_buttons">
             {" "}

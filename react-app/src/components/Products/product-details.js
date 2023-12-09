@@ -5,11 +5,13 @@ import ProductModal from "./product-modal";
 import { getCurr } from "../../store/session";
 import { fetchProducts } from "../../store/products";
 import ProductTile from "./product-tile";
+import { useMemo } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOneProduct } from "../../store/product";
 import "./index.css";
-import "./product-details.css"
+import "./product-details.css";
+
 function ProductDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -19,24 +21,26 @@ function ProductDetails() {
   const product = useSelector((state) => state.product);
 
   const [isFavorited, setIsFavorited] = useState(false);
-  // const [filteredProducts, setFilteredProducts] = useState([]);
 
   const productsObj = useSelector((state) => state.products);
   const products = Object.values(productsObj);
 
-  const filteredProducts = products.filter(
-    (prod) => prod.category === product.category && prod.id !== product.id
-  );
-  // useEffect(() => {
-  //   const FilterProductsByCategory = async () => {
-  //     const filtered = products.filter(
-  //       (prod) => prod.category === product.category
-  //     );
-  //     setFilteredProducts(filtered);
-  //   };
+  const [randomProducts, setRandomProducts] = useState([]);
 
-  //   FilterProductsByCategory();
-  // }, [product.category]);
+  useEffect(() => {
+    const filtered = products.filter(
+      (prod) => prod.category === product.category && prod.id !== product.id
+    );
+    const newRandomProducts = filtered.sort(() => Math.random() - 0.5).slice(0, 5);
+    setRandomProducts(newRandomProducts);
+  }, [product, productsObj]);
+  // const filteredProducts = products.filter(
+  //   (prod) => prod.category === product.category && prod.id !== product.id
+  // );
+  // const randomProducts = filteredProducts
+  //   .sort(() => Math.random() - 0.5)
+  //   .slice(0, 5);
+
   useEffect(() => {
     const isProductFavorited = user?.favorites?.some(
       (favorite) => favorite.id === product.id
@@ -58,10 +62,11 @@ function ProductDetails() {
       }
     };
     initialFetch();
-  }, [dispatch]);
+  }, [dispatch, productId]);
 
   if (!product?.id) return null;
-  if (!Object.values(products).length) return null
+  if (!Object.values(products).length) return null;
+
   // FAVORITES HELPERS
   const postFavorite = async (productId) => {
     const res = await fetch(`/api/favorites/${productId}`, {
@@ -77,11 +82,6 @@ function ProductDetails() {
     });
   };
 
-  // FILTER PRODUCTS FUNCTIONS
-
-
-  console.log(filteredProducts, "FILTERED");
-
   const toggleFavorite = () => {
     if (isFavorited) {
       deleteFavorite(product.id);
@@ -91,26 +91,16 @@ function ProductDetails() {
     setIsFavorited((prevState) => !prevState);
   };
 
- 
   return (
     <div className="product-details-main-container">
-        <h2>VIEW SIMILAR PRODUCTS</h2>
-      <div id="similar-products-container">
-        {filteredProducts.length > 0 &&
-          filteredProducts.slice(0,5).map((product) => (
-              <ProductTile product={product} />
-          ))}
-      </div>
       <div className="prod-det-product-container">
         <h2>{product.name}</h2>
         <img src={product.preview_image?.product_image} alt={product.name} />
-        <p>{product.body}</p>
-        <div className="add-to-cart-overlay-user-profile">
-          <ProductModalButton
-            className="add-to-cart-button"
-            buttonText={"Add to Cart"}
-            modalComponent={<ProductModal product={product} />}
-          />
+        <div className="body-price">
+          <p id="pd-body">{product.body}</p>
+          <p id="pd-price">${product.price}</p>
+        </div>
+        {user && (
           <i
             className={
               isFavorited ? "fa-solid fa-heart" : "fa-regular fa-heart"
@@ -120,17 +110,34 @@ function ProductDetails() {
               toggleFavorite();
             }}
           ></i>
+        )}
+        <div className="add-to-cart-overlay-user-profile">
+          <ProductModalButton
+            className="add-to-cart-button"
+            buttonText={"Add to Cart"}
+            modalComponent={<ProductModal product={product} />}
+          />
         </div>
       </div>
-
       <div
         className="seller-info-container"
         onClick={() => redirectToUserPage(product.user.id)}
       >
-        <h2>Seller: {product.user.name}</h2>
+        <h2>Seller:</h2>
         {product.user?.profile_picture && (
-          <img src={product.user?.profile_picture} alt={product.user.name} />
+          <img
+            id="pd-seller-img"
+            src={product.user?.profile_picture}
+            alt={product.user.name}
+          />
         )}
+        <h2>{product.user.name}</h2>
+      </div>
+      <h2>You May Also Like</h2>
+      <div id="similar-products-container">
+        {randomProducts.length > 0 &&
+          randomProducts
+            .map((product) => <ProductTile product={product} />)}
       </div>
     </div>
   );
