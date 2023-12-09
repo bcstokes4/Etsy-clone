@@ -28,7 +28,7 @@ function AllProducts() {
 
   return (
     <div className="products-main-container">
-      <h1>Products</h1>
+      {/* <h1>Products</h1> */}
       <div className="category-links">
         
         <button onClick={() => filterProductsByCategory("All")}>All</button>
@@ -51,10 +51,11 @@ function AllProducts() {
           Swimming
         </button>
         <button onClick={() => filterProductsByCategory("Lacrosse")}>
-          Other
+          Lacrosse
         </button>
       </div>
       
+      <div className="products-container-main">
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product) => (
           <ProductTile product={product} key={product.id} />
@@ -64,6 +65,7 @@ function AllProducts() {
           <ProductTile product={product} key={product.id} />
         ))
       )}
+      </div>
     </div>
   );
 }

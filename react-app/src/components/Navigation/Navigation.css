@@ -3,7 +3,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 30px 50px; 
-  background-color: #f0f0f0; 
+  background-color: white; 
+  border-bottom: 1px solid gray;
 }
 #sporthub-link{
   font-size: 30px;

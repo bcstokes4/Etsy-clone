@@ -10,7 +10,7 @@ import ProductDetails from "./components/Products/product-details";
 import ProfilePage from "./components/ProfilePage/profile-page";
 import CheckoutProduct from "./components/Checkout/Checkout";
 import OtherUserPage from "./components/OtherUserPage/other-user-page";
-
+import SplashPage from "./components/SplashPage/Splash-Page";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +44,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/">
+            <SplashPage/>
           </Route>
         </Switch>
       )}

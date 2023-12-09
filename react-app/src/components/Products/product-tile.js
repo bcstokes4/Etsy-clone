@@ -65,9 +65,11 @@ function ProductTile({ product }) {
       onMouseLeave={() => setShowButton(false)}
     >
       <div className="product-div" onClick={directToProductDetails}>
-        <h2>{product.name}</h2>
         <img src={product.preview_image.product_image} alt={product.name} />
-        <p>${product.price}</p>
+        <div className="product-div-name-price-container">
+        <h2>{product.name}</h2>
+        <p>${product.price.toFixed(2)}</p>
+        </div>
         {/* Heart icon */}
         <i
           className={isFavorited ? "fa-solid fa-heart" : "fa-regular fa-heart"}
@@ -76,7 +78,7 @@ function ProductTile({ product }) {
             toggleFavorite();
           }}
         ></i>
-        {product?.reviews?.length ? (
+        {/* {product?.reviews?.length ? (
           <span className="product-rating">
             {(
               product.reviews.reduce((curr, prev) => curr + prev.stars, 0) /
@@ -86,7 +88,7 @@ function ProductTile({ product }) {
           </span>
         ) : (
           <p>Be the first to order and leave a review!</p>
-        )}
+        )} */}
       </div>
       {showButton && (
         <div className="add-to-cart-overlay">

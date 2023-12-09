@@ -27,7 +27,7 @@ export const removeProduct = (id) => ({
 
 // PRODUCT IMAGE THUNKS
 export const fetchEditProductImage = (productId, imageId, payload) => async (dispatch) => {
-    const res = await fetch(`api/products/${productId}/images/${imageId}`, {
+    const res = await fetch(`/api/products/${productId}/images/${imageId}`, {
         method: "POST",
         body: payload
     })
@@ -39,7 +39,7 @@ export const fetchEditProductImage = (productId, imageId, payload) => async (dis
 }
 
 export const fetchCreateProductImage = (productId, payload) => async (dispatch) => {
-    const res = await fetch(`api/products/${productId}/images`, {
+    const res = await fetch(`/api/products/${productId}/images`, {
         method: "POST",
         body: payload
     })
@@ -52,13 +52,13 @@ export const fetchCreateProductImage = (productId, payload) => async (dispatch) 
 // THUNKS
 
 export const fetchProducts = () => async (dispatch) => {
-    const res = await fetch('api/products')
+    const res = await fetch('/api/products')
     const data = await res.json()
     dispatch(loadProducts(data))
 }
 
 export const fetchCreateProduct = (payload) => async (dispatch) => {
-    const res = await fetch('api/products', {
+    const res = await fetch('/api/products', {
         method: "POST",
         body: payload
     })
@@ -71,7 +71,7 @@ export const fetchCreateProduct = (payload) => async (dispatch) => {
 }
 
 export const fetchUpdateProduct = (productId, payload) => async (dispatch) => {
-    const res = await fetch(`api/products/${productId}`, {
+    const res = await fetch(`/api/products/${productId}`, {
         method: "POST",
         body: payload
     })
@@ -83,7 +83,7 @@ export const fetchUpdateProduct = (productId, payload) => async (dispatch) => {
 }
 
 export const fetchDeleteProduct = (id) => async (dispatch) => {
-    const res = await fetch(`api/products/${id}`, {
+    const res = await fetch(`/api/products/${id}`, {
         method: "DELETE"
     })
     if (res.ok) dispatch(removeProduct(id))
