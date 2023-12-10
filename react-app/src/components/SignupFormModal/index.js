@@ -34,7 +34,10 @@ function SignupFormModal() {
 		setErrors({})
 
 		let errorsObj = {};
-
+		
+		if (password.length < 6){
+			errorsObj.password = 'Password must be at least 6 characters'
+		}
 		if (password !== confirmPassword) {
 			errorsObj.password =
 			  "Confirm Password field must be the same as the Password field";
@@ -59,13 +62,14 @@ function SignupFormModal() {
 		}
 		
 		if (!Object.values(errorsObj).length) {
-
+			console.log('DISPATCHING')
+			console.log(username, 'USERNAME')
 			const data = await dispatch(
 			  signUp(
+				name,
 				username,
 				email,
 				password,
-				name
 				)
 			)
 
@@ -127,7 +131,8 @@ function SignupFormModal() {
 			  Password
 			  <input
 				className="login_input"
-				type="text"
+				id="login_input3"
+				type="password"
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 				required
@@ -137,7 +142,8 @@ function SignupFormModal() {
 			  Confirm Password
 			  <input
 				className="login_input"
-				type="text"
+				id="login_input4"
+				type="password"
 				value={confirmPassword}
 				onChange={(e) => setConfirmPassword(e.target.value)}
 				required

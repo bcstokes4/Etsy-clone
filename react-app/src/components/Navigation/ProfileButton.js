@@ -68,7 +68,7 @@ function ProfileButton({ user }) {
         />
 
       </div>
-      <div className={userClassName}>
+      <div className={userClassName} >
         <button id="hamburger" onClick={openMenu}>
           <i
             className="fas fa-user-circle"
@@ -76,20 +76,21 @@ function ProfileButton({ user }) {
           />
         </button>
         <ul className={ulClassName} ref={ulRef}>
+          <li>Hi, {user?.name}!</li>
           <li>{user?.username}</li>
           <li>{user?.email}</li>
-          <li>
+          {/* <li>
             <Link onClick={closeMenu} to="/products" className='profile-link'>
               Products
             </Link>
-          </li>
-          <li>
+          </li> */}
+          <li id="a">
             <Link onClick={closeMenu} to="/current" className='profile-link'>
               My Profile
             </Link>
           </li>
-          <li>
-            <button onClick={handleLogout} id="loginButton">
+          <li id="b">
+            <button onClick={handleLogout} >
               Log Out
             </button>
           </li>
