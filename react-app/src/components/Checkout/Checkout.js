@@ -15,7 +15,7 @@ function CheckoutProduct() {
   const { setModalContent } = useModal();
 
   useEffect(() => {
-    // Dispatch the loadCart upon mount
+    
     dispatch(loadCartThunk());
   }, [dispatch]);
 
@@ -44,42 +44,50 @@ function CheckoutProduct() {
     }
 
     const errorsObj = {};
+
     if (!address) {
       errorsObj.address = "Address is required";
+    }
+    if (address.length > 200) {
+      errorsObj.address = "Address must be less than 200 characters";
     }
 
     setErrors(errorsObj);
     let total = 0
-    const productsArr = cartProducts.map((product) => {
-      const totalPriceForProduct = product.price * product.qty;
-      total += totalPriceForProduct; 
-      return {
-        id: product.id,
-        quantity: product.qty,
-      };
-    });
-      
-    const bodyOrder = {
-        'user_id': user.user.id,
-        'is_completed': false,
-        'address': address,
-        'price': total.toFixed(2),
-        'created_at': new Date(),
-        'products': productsArr
-    }
-    console.log(bodyOrder)
-    let res = await dispatch(submitOrder(bodyOrder));
+    
+    if (!Object.values(errorsObj).length){
 
-    if (!res.errors) {
-      await dispatch(clearCart());
-      history.push("/current");
-    } else {
-      errorsObj.errors = res.errors;
-      setErrors(errorsObj);
+      const productsArr = cartProducts.map((product) => {
+        const totalPriceForProduct = product.price * product.qty;
+        total += totalPriceForProduct; 
+        return {
+          id: product.id,
+          quantity: product.qty,
+        };
+      });
+        
+      const bodyOrder = {
+          'user_id': user.user.id,
+          'is_completed': false,
+          'address': address,
+          'price': total.toFixed(2),
+          'created_at': new Date(),
+          'products': productsArr
+      }
+      // console.log(bodyOrder)
+      let res = await dispatch(submitOrder(bodyOrder));
+  
+      if (!res.errors) {
+        await dispatch(clearCart());
+        history.push("/current");
+      } else {
+        errorsObj.errors = res.errors;
+        setErrors(errorsObj);
+      }
     }
   };
 
-  console.log(Object.values(productOrders))
+  // console.log(Object.values(productOrders))
   return (
     <>
       <div className="checkout-products-container">
@@ -101,7 +109,7 @@ function CheckoutProduct() {
             value={address}
           />
         </label>
-        {errors.address && <p className="errors">{errors.address}</p>}
+        <p className="errors">{errors.address ? errors.address : ''}</p>
 
         <button className="checkout_button">Place Order</button>
       </form>

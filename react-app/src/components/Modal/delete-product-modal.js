@@ -3,6 +3,7 @@ import { useModal } from "../../context/Modal";
 import { fetchDeleteProduct } from "../../store/products";
 import React from "react";
 import { getCurr } from "../../store/session";
+import './delete-product-modal.css'
 // import { removeFromCart } from "../../store/cart";
 
 const DeleteModal = ({ id }) => {

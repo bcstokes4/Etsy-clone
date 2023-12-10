@@ -1,0 +1,40 @@
+/* Example CSS for DeleteModal */
+
+.delete-product-modal {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    /* Add other necessary styles */
+  }
+  
+  .delete-product-modal h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    /* Add other necessary styles */
+  }
+  
+  #delete-product-span {
+    font-size: 16px;
+    color: #333;
+    /* Add other necessary styles */
+  }
+  
+  .confirm-delete,
+  .do-not-delete-product {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    /* Add other necessary styles */
+  }
+  
+  .confirm-delete:hover,
+  .do-not-delete-product:hover {
+    background-color: #d32f2f;
+    /* Adjust hover styles as needed */
+  }
+  

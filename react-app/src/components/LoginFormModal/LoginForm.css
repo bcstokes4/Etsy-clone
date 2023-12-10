@@ -29,7 +29,7 @@
     box-sizing: border-box;
   }
   .loginButton {
-    width: 100%; /* Button full width */
+    width: 100%; 
     background-color: #f1641e;
     color: white;
     padding: 10px;

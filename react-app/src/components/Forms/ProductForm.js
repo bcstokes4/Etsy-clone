@@ -50,7 +50,6 @@ function ProductForm({ product, formAction }) {
 
     const errorsObj = {};
 
-    // PLACE ERROR HANDLING HERE!!!!!!
     if(!/\.\d{2}$/.test(price.toString())){
       errorsObj.price = 'Price must be in the format $19.99 (2 decimal places)'
     }

@@ -2,8 +2,8 @@
   display: grid;
   gap: 40px;
   padding: 40px;
-  max-width: 1200px; /* Limit page width */
-  margin: 0 auto; /* Center the content */
+  max-width: 1200px; 
+  margin: 0 auto; 
 }
 
 .user-profile-container {
@@ -55,7 +55,7 @@
 }
 .orders-container {
   background-color: whitesmoke;
-  padding: 10px; /* Adjust the padding to match the product container */
+  padding: 10px; 
 }
 .user-order-container {
   border: 1px solid #ccc;

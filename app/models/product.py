@@ -17,7 +17,7 @@ class Product(db.Model):
     created_at = db.Column(db.DateTime)
     
     user = db.relationship("User", back_populates="products")
-    orders = db.relationship("OrderProduct", back_populates='product')
+    orders = db.relationship("OrderProduct", back_populates='product', cascade='all, delete')
     images = db.relationship("ProductImage", back_populates='product',cascade="all, delete")
     favorites = db.relationship("User", secondary=favorites, back_populates='favorites')
     reviews = db.relationship("Review", back_populates="product", cascade="all, delete")
