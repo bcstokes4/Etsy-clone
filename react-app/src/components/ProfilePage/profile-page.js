@@ -26,21 +26,41 @@ function ProfilePage() {
   }, [sessionUser, history, dispatch]);
   if (!sessionUser) return null;
 
+  const orderDate = (createdAt) => {
+    let parts = createdAt.split(' ')
+    return parts.slice(0,4).join(' ')
+  }
 
+  const monthsArray = [
+    'January', 'February', 'March', 'April',
+    'May', 'June', 'July', 'August',
+    'September', 'October', 'November', 'December'
+  ];
+  
+  const parts = sessionUser?.created_at.split(' ');
+  let monthAbbreviation;
+  let fullMonth;
+  if(parts){
+    monthAbbreviation = parts[2]
+    fullMonth = monthsArray.find(month => month.startsWith(monthAbbreviation.trim()));
+  } 
   return (
     <div className="profile-main-container">
       <div className="user-profile-container">
         <h2>{sessionUser.name}</h2>
+        <h3>{sessionUser.email}</h3>
         {sessionUser?.profile_picture ? (
           <img src={sessionUser.profile_picture} alt="Profile" />
         ) : null}
+        <h3>Member since {fullMonth} {parts[3]}</h3>
         <OpenModalButton
           buttonText={"Create Product"}
-          className={"create_component"}
+          className="create_component"
+          key={sessionUser.id}
           modalComponent={<ProductForm formAction={"create"} />}
         />
       </div>
-        <h2>My Favorites</h2>
+        {favorites.length && <h2 id="prod-head">My Favorites</h2>}
       <div className="favorites-container">
         {favorites.map((product) => (
           <ProductTile product={product} key={product.id}/>
@@ -53,29 +73,30 @@ function ProfilePage() {
             sessionUser.orders.length > 0 &&
             sessionUser.orders.map((order) => (
               <div className="user-order-container" key={order.id}>
+                <h2>{orderDate(order.created_at)}</h2>
                 {order.products.length > 0 &&
                   order.products.map((product) => (
                     <div className="order-item-container" key={product.id}>
                       <div className="order-text-container">
                         <h4>{product.product.name}</h4>
                         <p>{product.product.body}</p>
-                        <p>Product price: {product.product.price}</p>
+                        <p>Price: <span className="money">${product.product.price}</span></p>
                       </div>
                       <img
                         src={product.product.preview_image.product_image}
                         alt={product.product.name}
                         className="user-order-image"
                       />
-                      <p>Quantity: {product.quantity}</p>
+                      <p>x{product.quantity}</p>
                     </div>
                   ))}
-                <p>Total: {order.price}</p>
+                <p>Total: <span className="money">${order.price}</span></p>
               </div>
             ))}
         </div>
       </div>
-      <div className="products-container">
-        <h2>{sessionUser.products.length ? "Products" : null}</h2>
+      <div className="user-products-container">
+        <h2 id="prod-head"> {sessionUser.products.length ? "Products" : null}</h2>
         <div>
           {sessionUser &&
             sessionUser.products.map((product) => (
@@ -84,7 +105,7 @@ function ProfilePage() {
                   <h4>{product.name}</h4>
                   <p>{product.body}</p>
                   <p>
-                    {Number.isInteger(product.price)
+                    ${Number.isInteger(product.price)
                       ? `${product.price}.00`
                       : product.price.toFixed(2)}
                   </p>
@@ -94,11 +115,13 @@ function ProfilePage() {
                   <OpenModalButton
                     buttonText={"Delete Product"}
                     className="delete_product"
+                    key={product.id}
                     modalComponent={<DeleteModal id={product.id} />}
                   />
                   <OpenModalButton
                     buttonText={"Update Product"}
                     className={"update_component"}
+                    key={product}
                     modalComponent={
                       <ProductForm formAction={"edit"} product={product} />
                     }

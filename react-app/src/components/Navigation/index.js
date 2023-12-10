@@ -13,7 +13,7 @@ function Navigation({ isLoaded }) {
   }, [dispatch]);
   return (
     <nav id="navbar">
-      <NavLink exact to="/"
+      <NavLink exact to="/products"
 	  id='sporthub-link'
 	  >
         SportHub

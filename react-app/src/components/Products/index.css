@@ -63,10 +63,11 @@
 
 .product-div > img {
   width: 100%; 
-  height: auto; 
+  min-height: 156.2px; 
   display: block;
   margin: 0 auto;
   margin-bottom: 10px;
+  /* object-fit: cover; */
 }
 
 .product-name {

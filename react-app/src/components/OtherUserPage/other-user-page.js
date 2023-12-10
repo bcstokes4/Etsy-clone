@@ -40,7 +40,7 @@ function OtherUserPage() {
         <h3>Member since {fullMonth} {parts[3]}</h3>
       </div>
 
-        <h2>Their Products</h2>
+        <h2 id="theirprod">Their Products</h2>
       <div className="products-container">
         {otherUser.products.map((product) => {
           return (

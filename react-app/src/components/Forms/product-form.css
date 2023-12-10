@@ -1,0 +1,78 @@
+/* Styling for the form modal */
+.prod-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%; /* Adjust the width of the modal */
+  max-height: 80%; /* Adjust the height of the modal */
+  overflow-y: auto; /* Enable vertical scroll if needed */
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+ 
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* Style for form input fields */
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Style for the image preview */
+  #item_form_img {
+    width: 250px;
+    height: auto;
+    margin-top: 10px;
+  }
+  
+  
+  /* Style for the submit button */
+  button.item-submit-button {
+    background-color: #f1641e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button.item-submit-button:hover {
+    background-color: #d24b14;
+  }
+  
+  /* Loading message style */
+  p.loading-message {
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  .prod-form-errors {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+    display: block;
+    height: 20px;
+  }
+  
+  /* Apply margin to the form elements */
+  label,
+  input,
+  textarea,
+  select {
+    margin-bottom: 15px;
+  }

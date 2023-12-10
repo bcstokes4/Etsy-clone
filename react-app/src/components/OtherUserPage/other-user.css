@@ -18,7 +18,7 @@
 
 .user-info-container h2 {
   margin: 0;
-  font-size: 28px; /* Increased font size for title */
+  font-size: 28px; 
 }
 
 .user-info-container img {
@@ -46,3 +46,6 @@
     margin-bottom: 10px;
   }
   
+  #theirprod{
+    padding-left: 40px;
+  }

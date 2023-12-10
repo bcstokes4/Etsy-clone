@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useModal } from "../../context/Modal";
+import './product-form.css'
 
 import {
   fetchCreateProduct,
@@ -113,7 +114,7 @@ function ProductForm({ product, formAction }) {
 
   return (
     <div>
-      <form enctype="multipart/form-data" onSubmit={handleSubmit}>
+      <form enctype="multipart/form-data" onSubmit={handleSubmit} className="prod-form">
         <label>
           Product Name
           <input
@@ -122,7 +123,7 @@ function ProductForm({ product, formAction }) {
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        {errors.name && <p>{errors.name}</p>}
+        <p className="prod-form-errors">{errors.name ? errors.name : ''}</p>
         <label>
           Body
           <textarea
@@ -131,7 +132,7 @@ function ProductForm({ product, formAction }) {
             onChange={(e) => setBody(e.target.value)}
           />
         </label>
-        {errors.body && <p>{errors.body}</p>}
+         <p className="prod-form-errors">{errors.body ? errors.body : ''}</p>
 
         <label>
           Price $
@@ -142,14 +143,13 @@ function ProductForm({ product, formAction }) {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
           />
-          {errors.price && <p>{errors.price}</p>}
         </label>
+          <p className="prod-form-errors">{errors.price ? errors.price : ''}</p>
         <label className="form_element">
           <h3 className="form_text_product">Category</h3>
           <select
             type="text"
             value={category}
-            // className={selectedCuisine}
             onChange={(e) => {
               setCategory(e.target.value);
             }}
@@ -166,10 +166,9 @@ function ProductForm({ product, formAction }) {
             <option value="Track">Track</option>
             <option value="Swimming">Swimming</option>
             <option value="Lacrosse">Lacrosse</option>
-            <option value="Other">Other</option>
           </select>
         </label>
-        {errors.category && <p>{errors.category}</p>}
+        <p className="prod-form-errors">{errors.category ? errors.category : ''}</p>
 
         <label className="item-form-labels">
           Upload Image
@@ -186,7 +185,7 @@ function ProductForm({ product, formAction }) {
             </div>
           )}
         </label>
-            {errors.image && <p>{errors.image}</p>}
+            <p className="prod-form-errors">{errors.image ? errors.image : ''}</p>
         <button className="item-submit-button">Submit</button>
         {imageLoading && <p>Image is Loading...</p>}
       </form>

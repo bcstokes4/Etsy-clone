@@ -1,0 +1,77 @@
+.login_modal_container {
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .login_modal_container h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  #login_input {
+    width: calc(100% - 20px); 
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  #login_input2 {
+    width: calc(100% - 20px); 
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .loginButton {
+    width: 100%; /* Button full width */
+    background-color: #f1641e;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .loginButton:hover {
+    background-color: #d24b14;
+  }
+  
+  .errors {
+    color: red;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    height: 22px; 
+  }
+  
+  .sign_up_demo {
+    margin-top: 20px;
+  }
+  
+  .sign_up_demo .loginButton {
+    margin-right: 10px;
+  }
+  
+  .sign_up_container {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  #login-button{
+    margin-top: 30px;
+  }
+  .sign_up_container > button{
+    background: none;
+    border: none;
+    color: #f1641e;
+  }
+  .sign_up_container > button:hover{
+    cursor: pointer;
+  }

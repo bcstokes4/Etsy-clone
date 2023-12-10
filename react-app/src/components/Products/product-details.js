@@ -115,6 +115,7 @@ function ProductDetails() {
           <ProductModalButton
             className="add-to-cart-button"
             buttonText={"Add to Cart"}
+            key={product.id}
             modalComponent={<ProductModal product={product} />}
           />
         </div>
