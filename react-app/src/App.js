@@ -45,9 +45,10 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/">
+          {/* <h1>Page Does Not exist</h1> */}
+          {/* <Route exact path="/">
             <SplashPage/>
-          </Route>
+          </Route> */}
         </Switch>
       )}
     </>

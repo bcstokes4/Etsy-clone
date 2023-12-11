@@ -14,7 +14,7 @@ function ProfilePage() {
   const sessionUser = useSelector((state) => state.session.user);
   const products = useSelector((state) => state.products);
   const favorites = sessionUser?.favorites;
- 
+  const noPictureImg = 'https://sporthub-bucket.s3.amazonaws.com/sporthub-seeders/no-pfp.jpeg'
   
   useEffect(() => {
     dispatch(getCurr());
@@ -36,7 +36,7 @@ function ProfilePage() {
     'May', 'June', 'July', 'August',
     'September', 'October', 'November', 'December'
   ];
-  
+  console.log(sessionUser, 'SESSIONUSER')
   const parts = sessionUser?.created_at.split(' ');
   let monthAbbreviation;
   let fullMonth;
@@ -49,9 +49,9 @@ function ProfilePage() {
       <div className="user-profile-container">
         <h2>{sessionUser.name}</h2>
         <h3>{sessionUser.email}</h3>
-        {sessionUser?.profile_picture ? (
-          <img src={sessionUser.profile_picture} alt="Profile" />
-        ) : null}
+        
+          <img src={sessionUser?.profile_picture ? sessionUser.profile_picture : noPictureImg} alt="Profile" />
+       
         <h3>Member since {fullMonth} {parts[3]}</h3>
         <OpenModalButton
           buttonText={"Create Product"}

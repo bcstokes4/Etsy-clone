@@ -15,6 +15,7 @@ function OtherUserPage() {
     'May', 'June', 'July', 'August',
     'September', 'October', 'November', 'December'
   ];
+  const noPictureImg = 'https://sporthub-bucket.s3.amazonaws.com/sporthub-seeders/no-pfp.jpeg'
   
   const parts = otherUser?.created_at.split(' ');
   let monthAbbreviation;
@@ -36,7 +37,7 @@ function OtherUserPage() {
     <div className="other-user-main-container">
       <div className="user-info-container">
         <h2>{otherUser.name}</h2>
-        <img src={otherUser.profile_picture} alt="" />
+        <img src={otherUser?.profile_picture ? otherUser?.profile_picture : noPictureImg} alt="" />
         <h3>Member since {fullMonth} {parts[3]}</h3>
       </div>
 

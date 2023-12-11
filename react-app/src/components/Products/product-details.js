@@ -19,6 +19,7 @@ function ProductDetails() {
 
   const user = useSelector((state) => state.session.user);
   const product = useSelector((state) => state.product);
+  const noPictureImg = 'https://sporthub-bucket.s3.amazonaws.com/sporthub-seeders/no-pfp.jpeg'
 
   const [isFavorited, setIsFavorited] = useState(false);
 
@@ -125,13 +126,13 @@ function ProductDetails() {
         onClick={() => redirectToUserPage(product.user.id)}
       >
         <h2>Seller:</h2>
-        {product.user?.profile_picture && (
+        
           <img
             id="pd-seller-img"
-            src={product.user?.profile_picture}
+            src={product.user?.profile_picture ? product.user?.profile_picture : noPictureImg}
             alt={product.user.name}
           />
-        )}
+        
         <h2>{product.user.name}</h2>
       </div>
       <h2>You May Also Like</h2>
