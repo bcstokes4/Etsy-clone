@@ -45,11 +45,17 @@ function SignupFormModal() {
 		if (!name) {
 			errorsObj.name = 'Name is required'
 		}
+		if (name.length < 6){
+			errorsObj.name = 'Name must be at least 6 characters'
+		}
 		if (name.length > 50){
 			errorsObj.name = 'Name must be 50 characters or less'
 		}
 		if (!username){
 			errorsObj.username = 'Username is required'
+		}
+		if (username.length < 6){
+			errorsObj.username = 'Username must be at least 6 characters'
 		}
 		if (username.length > 40){
 			errorsObj.username = 'Username must be 40 characters or less'

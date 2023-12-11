@@ -59,11 +59,17 @@ function ProductForm({ product, formAction }) {
     if(!name){
       errorsObj.name = 'Name is required'
     }
+    if(name.length < 6){
+      errorsObj.name = 'Name must be at least 6 characters'
+    }
     if(name.length > 100){
       errorsObj.name = 'Name must be less than 100 characters'
     }
     if(!body){
       errorsObj.body = 'Description is required'
+    }
+    if(body.length < 40){
+      errorsObj.body = 'Description must be at least 40 characters'
     }
     if(body.length > 255){
       errorsObj.body = 'Description must be less than 255 characters'
@@ -124,7 +130,7 @@ function ProductForm({ product, formAction }) {
         </label>
         <p className="prod-form-errors">{errors.name ? errors.name : ''}</p>
         <label>
-          Body
+          Description
           <textarea
             rows="10"
             value={body}
