@@ -15,7 +15,7 @@ function LoginFormPage() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
-  if (sessionUser) return <Redirect to="/products" />;
+  if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

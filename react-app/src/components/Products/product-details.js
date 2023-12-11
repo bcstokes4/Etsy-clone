@@ -59,7 +59,7 @@ function ProductDetails() {
       const res = await dispatch(fetchOneProduct(productId));
       await dispatch(fetchProducts());
       if (res?.ok === false) {
-        history.push("/products");
+        history.push("/");
       }
     };
     initialFetch();

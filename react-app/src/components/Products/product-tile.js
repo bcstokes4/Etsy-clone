@@ -16,7 +16,7 @@ function ProductTile({ product }) {
   const [isFavorited, setIsFavorited] = useState(false);
 
   const directToProductDetails = () => {
-    history.push(`/products/${product.id}`);
+    history.push(`/${product.id}`);
   };
 
   const handleAddToCart = (e) => {

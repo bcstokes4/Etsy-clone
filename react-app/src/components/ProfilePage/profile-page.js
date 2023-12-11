@@ -21,7 +21,7 @@ function ProfilePage() {
   }, [dispatch]);
   useEffect(() => {
     if (!sessionUser) {
-      history.push("/products");
+      history.push("/");
     }
   }, [sessionUser, history, dispatch]);
   if (!sessionUser) return null;
