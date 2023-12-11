@@ -60,7 +60,7 @@ function ProfilePage() {
           modalComponent={<ProductForm formAction={"create"} />}
         />
       </div>
-        {favorites.length && <h2 id="prod-head">My Favorites</h2>}
+        <h2 id="prod-head">{ favorites.length ? 'My Favorites' : ''}</h2>
       <div className="favorites-container">
         {favorites.map((product) => (
           <ProductTile product={product} key={product.id}/>
