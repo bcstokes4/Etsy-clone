@@ -8,6 +8,7 @@ import configureStore from "./store";
 import * as sessionActions from "./store/session";
 import App from "./App";
 
+// import { GoogleOAuthProvider } from '@react-oauth/google'
 import "./index.css";
 
 const store = configureStore();
@@ -34,8 +35,10 @@ function Root() {
 }
 
 ReactDOM.render(
+	// <GoogleOAuthProvider clientId="50502033071-s5e2947a0fb9vu6ses8ohmhf85sov2iv.apps.googleusercontent.com">
 	<React.StrictMode>
 		<Root />
 	</React.StrictMode>,
+	// </GoogleOAuthProvider>,
 	document.getElementById("root")
 );

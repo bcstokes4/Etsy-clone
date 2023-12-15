@@ -27,6 +27,18 @@ markupsafe = "==2.1.2"
 werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
 botocore = "*"
+cachetools = "*"
+certifi = "*"
+charset-normalizer = "*"
+google-auth-oauthlib = "*"
+google-auth = "*"
+oauthlib = "*"
+requests-oauthlib = "*"
+requests = "*"
+rsa = "*"
+setuptools = "*"
+urllib3 = "*"
+zipp = "*"
 
 [dev-packages]
 

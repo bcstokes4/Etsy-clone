@@ -5,6 +5,7 @@ import { useModal } from "../../context/Modal";
 import SignupFormModal from '../SignupFormModal'
 import OpenModalButton from '../OpenModalButton'
 import "./LoginForm.css";
+import { GoogleLogin } from "@react-oauth/google";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -13,6 +14,11 @@ function LoginFormModal() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
+  // const BASE_URL = process.env(BASE_URL);
+  // console.log(BASE_URL)
+  const tester = () => {
+    fetch('/api/auth/test')
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -26,6 +32,12 @@ function LoginFormModal() {
     e.preventDefault();
     dispatch(login("demo@aa.io", "password")).then(closeModal());
   };
+  const responseMessage = (response) => {
+    console.log(response);
+};
+const errorMessage = (error) => {
+    console.log(error);
+};
   return (
     <div className="login_modal_container">
       <h1>Log In</h1>
@@ -72,6 +84,9 @@ function LoginFormModal() {
             modalComponent={<SignupFormModal />}
           />
         </div>
+        {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage} href={`${BASE_URL}/api/auth/login_oauth`}/> */}
+        <a href='http://localhost:5000/api/auth/oauth_login' ><button >OAUTH</button></a>
+        
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import ProfilePage from "./components/ProfilePage/profile-page";
 import CheckoutProduct from "./components/Checkout/Checkout";
 import OtherUserPage from "./components/OtherUserPage/other-user-page";
 import SplashPage from "./components/SplashPage/Splash-Page";
+// import { GoogleLogin } from "@react-oauth/google";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      {/* <GoogleLogin onSuccess={responseMessage} onError={errorMessage}/> */}
       {isLoaded && (
         <Switch>
           <Route exact path="/">

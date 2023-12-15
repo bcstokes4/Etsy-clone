@@ -101,9 +101,9 @@ def react_root(path):
 def not_found(e):
     return app.send_static_file('index.html')
 
-@app.errorhandler(403)
-def unauthorized(e):
-    return app.send_static_file('index.html')
+# @app.errorhandler(403)
+# def unauthorized(e):
+#     return app.send_static_file('index.html')
 
 @app.errorhandler(400)
 def bad_request(e):
