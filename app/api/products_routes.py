@@ -165,10 +165,11 @@ def edit_one_review(productId, reviewId):
         return abort(404, description='Review not found')
     
     if form.validate_on_submit():
-        data= form.data
+        data = form.data
         
-        product.review = data["review"]
-        product.stars = data["stars"]
+        print('REVIEWWWWWWWWWWWWWWWWWWW', review.to_dict())
+        review.review = data["review"]
+        review.stars = data["stars"]
         
         db.session.commit()
         return review.to_dict(), 200

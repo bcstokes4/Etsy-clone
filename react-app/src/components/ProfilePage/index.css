@@ -174,3 +174,17 @@
   width: 100%;
   padding: 20px;
 }
+
+/* Review */
+.order-text-container > button{
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer; 
+    color: #007bff; 
+    text-decoration: none; 
+  }
+  .order-text-container > button:hover{
+    text-decoration: underline;
+  }

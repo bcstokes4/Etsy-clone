@@ -31,6 +31,7 @@ class User(db.Model, UserMixin):
             'products': [product.to_dict() for product in self.products],
             'orders': [order.to_dict_no_user() for order in self.orders],
             'favorites': [favorite.to_dict() for favorite in self.favorites],
+            'reviews': [review.to_dict() for review in self.reviews],
             'profile_picture': self.profile_picture,
             'created_at': self.created_at
         }

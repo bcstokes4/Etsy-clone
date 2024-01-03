@@ -37,8 +37,9 @@
     background-color: whitesmoke;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px; 
+    justify-content: center;
+    padding: 20px;
+    /* max-width: 1500px;  */
   }
   
   .products-container h2 {
@@ -47,5 +48,6 @@
   }
   
   #theirprod{
-    padding-left: 40px;
+    padding-top: 100px;
+    text-align: center;
   }

@@ -44,8 +44,8 @@ export const fetchOneProduct = (id) => async (dispatch) => {
   export const createAReviewThunk = (productId, review) => async (dispatch) => {
     const res = await fetch(`/api/products/${productId}/reviews`, {
       method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(review),
+      // headers: { "Content-type": "application/json" },
+      body: review,
     });
 
     if (res.ok) {
@@ -57,11 +57,26 @@ export const fetchOneProduct = (id) => async (dispatch) => {
       return errors;
     }
   };
+  export const editAReviewThunk = (productId, reviewId, formData) => async (dispatch) => {
+    const res = await fetch(`/api/products/${productId}/reviews/${reviewId}`, {
+      method: "POST",
+      // headers: { "Content-type": "application/json" },
+      body: formData
+    });
 
+    if (res.ok) {
+      const rev = await res.json();
+      dispatch(createAReview(rev));
+      return rev;
+    } else {
+      const errors = await res.json();
+      return errors;
+    }
+  };
 export const deleteAReviewThunk = (reviewId) => async (dispatch) => {
   const res = await fetch(`/api/reviews/${reviewId}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    // headers: { "Content-Type": "application/json" },
   });
 
   if (res.ok) {

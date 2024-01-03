@@ -5,7 +5,7 @@ import ProductModal from "./product-modal";
 import { getCurr } from "../../store/session";
 import { fetchProducts } from "../../store/products";
 import ProductTile from "./product-tile";
-import { useMemo } from "react";
+// import { useMemo } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOneProduct } from "../../store/product";
@@ -112,7 +112,7 @@ function ProductDetails() {
             }}
           ></i>
         )}
-        <div className="add-to-cart-overlay-user-profile">
+        <div className="overlay-user-profile">
           <ProductModalButton
             className="add-to-cart-button"
             buttonText={"Add to Cart"}
@@ -133,7 +133,7 @@ function ProductDetails() {
             alt={product.user.name}
           />
         
-        <h2>{product.user.name}</h2>
+        <h2 id="prod-det-seller-name">{product.user.name}</h2>
       </div>
       <h2>You May Also Like</h2>
       <div id="similar-products-container">
