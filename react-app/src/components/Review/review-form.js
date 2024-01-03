@@ -10,7 +10,6 @@ import DeleteReviewModal from "../Modal/delete-review-modal";
 import "./index.css";
 
 function ReviewForm({ formAction, prevReview, productId }) {
-  
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const history = useHistory();
@@ -24,8 +23,8 @@ function ReviewForm({ formAction, prevReview, productId }) {
   );
   const [errors, setErrors] = useState({});
   const [hover, setHover] = useState();
-  let h4Text =
-    formAction === "edit" ? "Update You Review" : "How was your purchase?";
+  let headingText =
+    formAction === "edit" ? "Update Your Review" : "How was your purchase?";
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -62,11 +61,8 @@ function ReviewForm({ formAction, prevReview, productId }) {
   };
   return (
     <form className="review_form_container" onSubmit={onSubmit}>
-      <div>
-        <h4>
-          {h4Text}{" "}
- 
-        </h4>
+      <div className="heading_text">
+        {headingText} 
       </div>
       <label className="form_label">
         <textarea
@@ -77,54 +73,53 @@ function ReviewForm({ formAction, prevReview, productId }) {
           onChange={(e) => setReview(e.target.value)}
         />
       </label>
-      <div>{errors.review ? errors.review : ''}</div>
+      <div>{errors.review ? errors.review : ""}</div>
       <div>
-        <div className="review_rating_div">
-          Please leave a rating{" "}
-
-        </div>
+        <div className="review_rating_div">How would you rate it? </div>
         <div className="stars_review">
-    {[...Array(5)].map((star, i) => {
-      const ratingValue = i + 1;
-      return (
-        <label className="star-label" key={ratingValue}>
-          <input
-            type="radio"
-            name="rating"
-            value={stars}
-            onClick={(e) => setStars(ratingValue)}
-          />
-          <FaStar
-            size={25}
-            onMouseEnter={(e) => setHover(ratingValue)}
-            onMouseLeave={(e) => setHover(stars)}
-            className="star"
-            color={ratingValue <= (hover || stars) ? "gold" : "gray"}
-          />
-        </label>
-      );
-    })}
-  </div>
+          {[...Array(5)].map((star, i) => {
+            const ratingValue = i + 1;
+            return (
+              <label className="star-label" key={ratingValue}>
+                <input
+                  type="radio"
+                  name="rating"
+                  value={stars}
+                  onClick={(e) => setStars(ratingValue)}
+                />
+                <FaStar
+                  size={25}
+                  onMouseEnter={(e) => setHover(ratingValue)}
+                  onMouseLeave={(e) => setHover(stars)}
+                  className="star"
+                  color={ratingValue <= (hover || stars) ? "gold" : "gray"}
+                />
+              </label>
+            );
+          })}
+        </div>
       </div>
-      <div>{errors.stars ? errors.stars : ''}</div>
-      <div>
-        <button type="submit">
+      <div>{errors.stars ? errors.stars : ""}</div>
+      <div className="buttons-div">
+        <button type="submit" className="update-review-button">
           {formAction !== "edit" ? "Post Review" : "Update Review"}
         </button>
-        {formAction === 'edit' ? 
-        <OpenModalButton
-        buttonText={
-          <span>
-            <i className="fa-solid fa-trash"></i>Delete Review
-          </span>
-        }
-        className="delete_product"
-        key={prevReview.id}
-        modalComponent={<DeleteReviewModal reviewId={prevReview.id} />}
-      />
-      :
-      ''
-        }
+        <div className="delete_review_button">
+        {formAction === "edit" ? (
+          <OpenModalButton
+            buttonText={
+              <span>
+                <i className="fa-solid fa-trash"></i>Delete Review
+              </span>
+            }
+            className="delete_product"
+            key={prevReview.id}
+            modalComponent={<DeleteReviewModal reviewId={prevReview.id} />}
+          />
+        ) : (
+          ""
+        )}
+        </div>
       </div>
     </form>
   );

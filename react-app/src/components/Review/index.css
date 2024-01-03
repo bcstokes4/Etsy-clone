@@ -13,40 +13,87 @@ input[type="radio"] {
   .stars_review {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 15px;
+    gap: 6px;
   }
   
   .star-label {
     display: flex;
     align-items: center;
-    margin-right: 10px;
+    /* margin-right: 10px; */
   }
   
   /* Review form container */
   .review_form_container {
-    width: 80%; /* Adjust as needed */
-    margin: 0 auto;
+    min-width: 700px;
+    width: auto; 
+    min-height: 300px;
+    height: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
   }
   
-  /* Review text area */
+ .heading_text{
+    text-align: center;
+    padding-bottom: 10px;
+    font-weight: 700;
+    font-size: 22px;
+ }
+  
   .review_text_area {
-    width: 100%;
-    height: 100px; /* Adjust as needed */
+    min-width: 700px;
+    height: 100px; 
     border: 1px solid #ddd;
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 15px;
   }
-  
-  /* Delete review button */
-  .delete_review_button {
+  .review_rating_div{
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    padding-bottom: 8px;
+  }
+
+  .buttons-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .delete_review_button{
+    background: none;
+  }
+
+  .delete_review_button > button{
     margin-top: 10px;
     font-size: 14px;
     color: #dc3545; /* Red color */
     cursor: pointer;
+    border: none;
+    background: none;
   }
-  
-  .delete_review_button:hover {
+  .delete_review_button > button > span > i{
+    padding-right: 5px;
+  }
+  .delete_review_button > button:hover {
     text-decoration: underline;
   }
   
+  .update-review-button{
+    width: 200px;
+    height: 40px;
+    background-color: #f1641e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  .update-review-button:hover{
+    cursor: pointer;
+    background-color: #d24b14;
+  }

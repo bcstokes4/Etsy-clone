@@ -2,6 +2,7 @@ const RECEIVE_PRODUCT = "/restaurants/RECEIVE_PRODUCT";
 const REMOVE_PRODUCT = "/restaurants/REMOVE_PRODUCT";
 const CREATE_REVIEW = "/reviews/CREATE_REVIEW";
 const DELETE_REVIEW = "/reviews/DELETE_REVIEW";
+const CLEAR_PRODUCT = 'clears_state'
 
 export const receiveProduct = (product) => ({
     type: RECEIVE_PRODUCT,
@@ -26,7 +27,11 @@ export const receiveProduct = (product) => ({
       reviewId,
     };
   };
-
+  export const clearProduct = () => {
+    return {
+      type: CLEAR_PRODUCT
+    }
+  }
 // Thunks
 
 export const fetchOneProduct = (id) => async (dispatch) => {
@@ -92,6 +97,8 @@ const singleProductReducer = (state = {}, action) => {
     switch (action.type) {
         case RECEIVE_PRODUCT:
             return {...action.product}
+        case CLEAR_PRODUCT:
+            return state
         default:
             return state
     }

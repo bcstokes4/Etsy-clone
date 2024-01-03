@@ -10,6 +10,10 @@ import { getCurr } from "../../store/session";
 import ReviewForm from "../Review/review-form";
 import "./index.css";
 
+import React from "react";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
+
 function ProfilePage() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -39,7 +43,9 @@ function ProfilePage() {
     );
     return foundReview || false;
   };
-
+  const redirectToProduct = (productId) => {
+    history.push(`/${productId}`);
+  };
   const monthsArray = [
     "January",
     "February",
@@ -96,27 +102,27 @@ function ProfilePage() {
       </div>
       <div className="orders-container">
         <h2>Orders</h2>
-        <div>
+        <div className="carousel-wrapper">
+          <AliceCarousel>
           {sessionUser &&
             sessionUser.orders.length > 0 &&
             sessionUser.orders.map((order) => (
-              <div className="user-order-container" key={order.id}>
-                <h2>{orderDate(order.created_at)}</h2>
-                {order.products.length > 0 &&
-                  order.products.map((product) => (
-                    <div className="order-item-container" key={product.id}>
-                      <div className="order-text-container">
-                        <h4>{product.product.name}</h4>
-                        <p>{product.product.body}</p>
-                        <p>
-                          Price:{" "}
-                          <span className="money">
-                            ${product.product.price}
-                          </span>
-                        </p>
+                <div className="user-order-container" key={order.id}>
+                  <h2>{orderDate(order.created_at)}</h2>
+                  {order.products.length > 0 &&
+                    order.products.map((product) => (
+                      <div className="order-item-container" key={product.id}>
+                        <div className="order-text-container">
+                          <h4>{product.product.name}</h4>
+                          <p>{product.product.body}</p>
+                          <p>
+                            Price:{" "}
+                            <span className="money">
+                              ${product.product.price}
+                            </span>
+                          </p>
 
-                        {reviewHelper(product.product.id) ? (
-                          
+                          {reviewHelper(product.product.id) ? (
                             <OpenModalButton
                               className="edit-review"
                               buttonText={
@@ -133,36 +139,36 @@ function ProfilePage() {
                                 />
                               }
                             />
-                        ) : (
-                          <OpenModalButton
-                            buttonText={
-                              <span>
-                                <i className="fas fa-edit"></i>Leave A Review
-                              </span>
-                            }
-                            modalComponent={
-                              <ReviewForm
-                              productId={product.product.id}
-                              key={product.product.id}
-                              />
-                            }
+                          ) : (
+                            <OpenModalButton
+                              buttonText={
+                                <span>
+                                  <i className="fas fa-edit"></i>Leave A Review
+                                </span>
+                              }
+                              modalComponent={
+                                <ReviewForm
+                                  productId={product.product.id}
+                                  key={product.product.id}
+                                />
+                              }
                             />
-                            
-                        )}
+                          )}
+                        </div>
+                        <img
+                          src={product.product.preview_image.product_image}
+                          alt={product.product.name}
+                          className="user-order-image"
+                        />
+                        <p>x{product.quantity}</p>
                       </div>
-                      <img
-                        src={product.product.preview_image.product_image}
-                        alt={product.product.name}
-                        className="user-order-image"
-                      />
-                      <p>x{product.quantity}</p>
-                    </div>
-                  ))}
-                <p>
-                  Total: <span className="money">${order.price}</span>
-                </p>
-              </div>
+                    ))}
+                  <p>
+                    Total: <span className="money">${order.price}</span>
+                  </p>
+                </div>
             ))}
+            </AliceCarousel>
         </div>
       </div>
       <div className="user-products-container">
@@ -174,7 +180,10 @@ function ProfilePage() {
           {sessionUser &&
             sessionUser.products.map((product) => (
               <div className="user-product-container">
-                <div className="product-text-container">
+                <div
+                  className="product-text-container"
+                  onClick={() => redirectToProduct(product.id)}
+                >
                   <h4>{product.name}</h4>
                   <p>{product.body}</p>
                   <p>
@@ -184,7 +193,11 @@ function ProfilePage() {
                       : product.price.toFixed(2)}
                   </p>
                 </div>
-                <img src={product.preview_image.product_image} />
+                <img
+                  src={product.preview_image.product_image}
+                  className="product-image"
+                  onClick={() => redirectToProduct(product.id)}
+                />
                 <div className="user-products-button-container">
                   <OpenModalButton
                     buttonText={"Delete Product"}

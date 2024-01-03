@@ -5,6 +5,7 @@ import ProductModal from "./product-modal";
 import { getCurr } from "../../store/session";
 import { fetchProducts } from "../../store/products";
 import ProductTile from "./product-tile";
+import { clearProduct } from "../../store/product";
 // import { useMemo } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -41,7 +42,9 @@ function ProductDetails() {
   // const randomProducts = filteredProducts
   //   .sort(() => Math.random() - 0.5)
   //   .slice(0, 5);
-
+  useEffect(() => {
+    window.scrollTo(0, 0); 
+  }, []);
   useEffect(() => {
     const isProductFavorited = user?.favorites?.some(
       (favorite) => favorite.id === product.id
@@ -53,6 +56,8 @@ function ProductDetails() {
     history.push(`/users/${userId}`);
   };
 
+  const [isLoading, setIsLoading] = useState(true); 
+
   useEffect(() => {
     const initialFetch = async () => {
       await dispatch(getCurr());
@@ -61,11 +66,14 @@ function ProductDetails() {
       if (res?.ok === false) {
         history.push("/");
       }
+      setIsLoading(false); 
     };
     initialFetch();
   }, [dispatch, productId]);
 
-  if (!product?.id) return null;
+  if (isLoading || !product?.id) {
+    return <div>Loading...</div>; 
+  }
   if (!Object.values(products).length) return null;
 
   // FAVORITES HELPERS

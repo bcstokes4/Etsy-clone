@@ -124,6 +124,22 @@
 .product-text-container {
   flex: 1;
 }
+.product-text-container:hover{
+  cursor: pointer;
+}
+.product-image:hover{
+  cursor: pointer;
+}
+
+.product-text-container:hover h4 {
+  text-decoration: underline;
+  cursor: pointer; 
+}
+
+.product-image:hover + .product-text-container h4 {
+  text-decoration: underline;
+  cursor: pointer; 
+}
 
 .user-products-button-container {
   display: flex;
@@ -187,4 +203,9 @@
   }
   .order-text-container > button:hover{
     text-decoration: underline;
+  }
+
+  /* carousel bullshit */
+  .carousel-wrapper{
+    width: 80vw;
   }

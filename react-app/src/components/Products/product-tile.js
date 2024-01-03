@@ -19,9 +19,9 @@ function ProductTile({ product }) {
     history.push(`/${product.id}`);
   };
 
-  const handleAddToCart = (e) => {
-    e.stopPropagation();
-  };
+  // const handleAddToCart = (e) => {
+  //   e.stopPropagation();
+  // };
 
   const quickAdd = () => {
     dispatch(loadCart())
@@ -95,7 +95,7 @@ function ProductTile({ product }) {
         <div className="add-to-cart-overlay">
           <button
             className="add-to-cart-button"
-            onClick={ () => quickAdd()}
+            onClick={ (e) => quickAdd(e)}
           >Quick Add to Cart
           </button>
         </div>
