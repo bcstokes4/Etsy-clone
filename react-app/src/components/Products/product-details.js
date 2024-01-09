@@ -12,6 +12,7 @@ import { fetchOneProduct } from "../../store/product";
 import "./index.css";
 import "./product-details.css";
 import SpinnerWrapper from "../LoadingSpinner";
+import Footer from "../Footer/footer";
 
 function ProductDetails() {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ function ProductDetails() {
     window.scrollTo(0, 0);
   }, [product]);
   // const scrollToFunc = () => {
-    
+
   // }
   useEffect(() => {
     const isProductFavorited = user?.favorites?.some(
@@ -95,7 +96,7 @@ function ProductDetails() {
   }, [dispatch, productId]);
 
   if (!Object.values(products).length) return null;
-  if (!product?.id) return null
+  if (!product?.id) return null;
 
   // FAVORITES HELPERS
   const postFavorite = async (productId) => {
@@ -136,10 +137,11 @@ function ProductDetails() {
   //   )
   // }
   return (
-    <div className="product-details-main-container">
-      {/* <SpinnerWrapper/> */}
-      {/* <div className="prod-details-top-container"> */}
-      <div className="prod-det-product-container">
+    <>
+      <div className="product-details-main-container">
+        <SpinnerWrapper />
+        {/* <div className="prod-details-top-container"> */}
+        <div className="prod-det-product-container">
           <h2>{product.name}</h2>
           <img src={product.preview_image?.product_image} alt={product.name} />
           <div
@@ -184,40 +186,42 @@ function ProductDetails() {
             />
           </div>
           {/* </div> */}
-      </div>
+        </div>
 
-      <h2 className="you-may-also-like">You May Also Like</h2>
-      <div id="similar-products-container">
-        {randomProducts.length > 0 &&
-          randomProducts.map((product) => <ProductTile product={product} />)}
-      </div>
+        <h2 className="you-may-also-like">You May Also Like</h2>
+        <div id="similar-products-container">
+          {randomProducts.length > 0 &&
+            randomProducts.map((product) => <ProductTile product={product} />)}
+        </div>
 
-      {/* REVIEWS CONTAINER */}
-      <div className="prod-det-reviews-main-container">
-        <h2 className="review-heading">Reviews</h2>
-        <div className="reviews-container">
-          {reviews?.length &&
-            reviews?.map((review) => (
-              <div className="review-wrapper">
-                <div className="reviewer-details">
-                  <img src={review.user.profile_picture} />
-                  <h3>{review.user.name}</h3>
-                  <h5>{timeAgoHelper(review.created_at)}</h5>
+        {/* REVIEWS CONTAINER */}
+        <div className="prod-det-reviews-main-container">
+          <h2 className="review-heading">Reviews</h2>
+          <div className="reviews-container">
+            {reviews?.length &&
+              reviews?.map((review) => (
+                <div className="review-wrapper">
+                  <div className="reviewer-details">
+                    <img src={review.user.profile_picture} />
+                    <h3>{review.user.name}</h3>
+                    <h5>{timeAgoHelper(review.created_at)}</h5>
+                  </div>
+                  <div className="review-stars">
+                    {[...Array(Math.round(review.stars))].map((star) => {
+                      return <FaStar color="gold" />;
+                    })}
+                    {[...Array(5 - Math.round(review.stars))].map((star) => {
+                      return <FaStar color="gray" />;
+                    })}
+                  </div>
+                  <h3>{review.review}</h3>
                 </div>
-                <div className="review-stars">
-                  {[...Array(Math.round(review.stars))].map((star) => {
-                    return <FaStar color="gold" />;
-                  })}
-                  {[...Array(5 - Math.round(review.stars))].map((star) => {
-                    return <FaStar color="gray" />;
-                  })}
-                </div>
-                <h3>{review.review}</h3>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
 

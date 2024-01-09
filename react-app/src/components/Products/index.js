@@ -4,6 +4,8 @@ import { fetchProducts } from "../../store/products";
 import ProductTile from "./product-tile";
 import "./index.css";
 import { fetchDeleteProduct } from "../../store/product";
+import SpinnerWrapper from "../LoadingSpinner";
+import Footer from "../Footer/footer";
 
 function AllProducts() {
   const dispatch = useDispatch();
@@ -64,7 +66,9 @@ function AllProducts() {
   };
 
   return (
+    <>
     <div className="products-main-container">
+      <SpinnerWrapper/>
       {/* <h1>Products</h1> */}
       <div className="category-links">
         <button onClick={() => filterProductsByCategory("All")}>All</button>
@@ -147,6 +151,8 @@ function AllProducts() {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 }
 
