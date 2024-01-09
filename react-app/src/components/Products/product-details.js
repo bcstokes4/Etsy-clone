@@ -5,9 +5,8 @@ import ProductModal from "./product-modal";
 import { getCurr } from "../../store/session";
 import { fetchProducts } from "../../store/products";
 import ProductTile from "./product-tile";
-import { ThreeDots } from "react-loader-spinner";
 import { FaStar } from "react-icons/fa";
-import { clearProduct } from "../../store/product";
+import { fetchDeleteProduct } from "../../store/product";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOneProduct } from "../../store/product";
 import "./index.css";
@@ -82,7 +81,7 @@ function ProductDetails() {
 
   useEffect(() => {
     const initialFetch = async () => {
-      // await dispatch(clearProduct())
+      // dispatch(fetchDeleteProduct())
       await dispatch(getCurr());
       const res = await dispatch(fetchOneProduct(productId));
       await dispatch(fetchProducts());
@@ -95,6 +94,7 @@ function ProductDetails() {
   }, [dispatch, productId]);
 
   if (!Object.values(products).length) return null;
+  if (!product?.id) return null
 
   // FAVORITES HELPERS
   const postFavorite = async (productId) => {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../store/products";
 import ProductTile from "./product-tile";
 import "./index.css";
-import { clearProduct } from "../../store/product";
+import { fetchDeleteProduct } from "../../store/product";
 
 function AllProducts() {
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ function AllProducts() {
   };
 
   useEffect(() => {
-    clearProduct()
+    dispatch(fetchDeleteProduct())
     dispatch(fetchProducts());
   }, [dispatch]);
 

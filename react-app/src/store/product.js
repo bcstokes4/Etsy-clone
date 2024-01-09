@@ -33,6 +33,10 @@ export const receiveProduct = (product) => ({
     }
   }
 // Thunks
+export const fetchDeleteProduct = () => async (dispatch) => {
+  dispatch(clearProduct())
+  return
+}
 
 export const fetchOneProduct = (id) => async (dispatch) => {
     const response = await fetch(`/api/products/${id}`);

@@ -50,7 +50,6 @@ export const fetchCreateProductImage = (productId, payload) => async (dispatch) 
     // return data
 }
 // THUNKS
-
 export const fetchProducts = () => async (dispatch) => {
     const res = await fetch('/api/products')
     const data = await res.json()
