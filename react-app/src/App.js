@@ -43,9 +43,7 @@ function App() {
           <ProfilePage />
         </Route>
         <Route path="/products/:productId">
-          <SpinnerWrapper>
             <ProductDetails />
-          </SpinnerWrapper>
         </Route>
         <Route path='/users/:userId'>
           <OtherUserPage />

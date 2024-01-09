@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOneProduct } from "../../store/product";
 import "./index.css";
 import "./product-details.css";
+import SpinnerWrapper from "../LoadingSpinner";
 
 function ProductDetails() {
   const dispatch = useDispatch();
@@ -136,6 +137,7 @@ function ProductDetails() {
   // }
   return (
     <div className="product-details-main-container">
+      <SpinnerWrapper/>
       {/* <div className="prod-details-top-container"> */}
       <div className="prod-det-product-container">
           <h2>{product.name}</h2>
