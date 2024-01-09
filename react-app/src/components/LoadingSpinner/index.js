@@ -1,25 +1,34 @@
 import React, { useState, useEffect } from "react";
-import "./spinner.css";
+import { ThreeDots } from "react-loader-spinner";
+import './spinner.css'
 
-const LoadingSpinner = () => {
-    const [mounted, setMounted] = useState(false);
-  
-    useEffect(() => {
-      setMounted(true);
-    }, []);
+function SpinnerWrapper({ children }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 1400); 
     
-    if (!mounted){
-        return (
-            <div className="loading-spinner">
-          <div className="spinner-container">
-            <div className="spinner"></div>
-            <p>Loading...</p>
-          </div>
-      </div>
-        )
-    }
-    return null
-  };
-  
-  export default LoadingSpinner;
+    return () => clearTimeout(timer);
+  }, []);
+
+  return !isLoaded ? (
+    <div className="tailspin-wrapper">
+      <ThreeDots
+        visible={true}
+        height={120}
+        width={120}
+        color="grey"
+        radius={1}
+        wrapperStyle={{}}
+        wrapperClass=""
+      />
+    </div>
+  ) : (
+    <>{children}</>
+  );
+}
+
+export default SpinnerWrapper;
   

@@ -5,10 +5,9 @@ import ProductModal from "./product-modal";
 import { getCurr } from "../../store/session";
 import { fetchProducts } from "../../store/products";
 import ProductTile from "./product-tile";
-import { clearProduct } from "../../store/product";
-// import { useMemo } from "react";
+import { ThreeDots } from "react-loader-spinner";
 import { FaStar } from "react-icons/fa";
-
+import { clearProduct } from "../../store/product";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOneProduct } from "../../store/product";
 import "./index.css";
@@ -64,7 +63,10 @@ function ProductDetails() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [product]);
+  // const scrollToFunc = () => {
+    
+  // }
   useEffect(() => {
     const isProductFavorited = user?.favorites?.some(
       (favorite) => favorite.id === product.id
@@ -75,13 +77,13 @@ function ProductDetails() {
   const redirectToUserPage = (userId) => {
     history.push(`/users/${userId}`);
   };
-  // console.log('RANDOMPRODUCTS', randomProducts)
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const initialFetch = async () => {
+      await dispatch(clearProduct())
       await dispatch(getCurr());
-      console.log(productId, 'PRODUCTID')
       const res = await dispatch(fetchOneProduct(productId));
       await dispatch(fetchProducts());
       if (res?.ok === false) {
@@ -92,14 +94,8 @@ function ProductDetails() {
     initialFetch();
   }, [dispatch, productId]);
 
-  if (isLoading || !product?.id) {
-    return <div>Loading...</div>;
-  }
   if (!Object.values(products).length) return null;
-  // const redirectToProdDet = (product) => {
-  //   let id = product.id
-  //   history.push(`/${id}`)
-  // }
+
   // FAVORITES HELPERS
   const postFavorite = async (productId) => {
     const res = await fetch(`/api/favorites/${productId}`, {
@@ -123,7 +119,21 @@ function ProductDetails() {
     }
     setIsFavorited((prevState) => !prevState);
   };
-
+  // if (!isLoaded2){
+  //   return (
+  //     <div className="tailspin-wrapper">
+  //       <ThreeDots
+  //         visible={true}
+  //         height={120}
+  //         width={120}
+  //         color="grey"
+  //         radius={1}
+  //         wrapperStyle={{}}
+  //         wrapperClass=""
+  //       />
+  //     </div>
+  //   )
+  // }
   return (
     <div className="product-details-main-container">
       {/* <div className="prod-details-top-container"> */}
@@ -142,14 +152,14 @@ function ProductDetails() {
                   ? product.user?.profile_picture
                   : noPictureImg
               }
-              alt={product.user.name}
+              alt={product?.user?.name}
             />
 
-            <h2 id="prod-det-seller-name">{product.user.name}</h2>
+            <h2 id="prod-det-seller-name">{product?.user?.name}</h2>
           </div>
           <div className="body-price">
-            <p id="pd-body">{product.body}</p>
-            <p id="pd-price">${product.price}</p>
+            <p id="pd-body">{product?.body}</p>
+            <p id="pd-price">${product?.price}</p>
           </div>
           {user && (
             <i
@@ -184,8 +194,8 @@ function ProductDetails() {
       <div className="prod-det-reviews-main-container">
         <h2 className="review-heading">Reviews</h2>
         <div className="reviews-container">
-          {reviews.length &&
-            reviews.map((review) => (
+          {reviews?.length &&
+            reviews?.map((review) => (
               <div className="review-wrapper">
                 <div className="reviewer-details">
                   <img src={review.user.profile_picture} />

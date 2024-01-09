@@ -12,6 +12,7 @@ import CheckoutProduct from "./components/Checkout/Checkout";
 import OtherUserPage from "./components/OtherUserPage/other-user-page";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
+import SpinnerWrapper from "./components/LoadingSpinner";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +32,9 @@ function App() {
           <SplashPage isLoaded={isLoaded}/>
         </Route>
         <Route exact path='/products'>
-          <AllProducts />
+        <SpinnerWrapper>
+            <AllProducts />
+          </SpinnerWrapper>
         </Route>
         <Route exact path="/checkout">
           <CheckoutProduct />
@@ -40,7 +43,9 @@ function App() {
           <ProfilePage />
         </Route>
         <Route path="/products/:productId">
-          <ProductDetails />
+          <SpinnerWrapper>
+            <ProductDetails />
+          </SpinnerWrapper>
         </Route>
         <Route path='/users/:userId'>
           <OtherUserPage />

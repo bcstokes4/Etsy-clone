@@ -98,7 +98,7 @@ const singleProductReducer = (state = {}, action) => {
         case RECEIVE_PRODUCT:
             return {...action.product}
         case CLEAR_PRODUCT:
-            return state
+            return {}
         default:
             return state
     }
