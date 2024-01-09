@@ -19,6 +19,7 @@
 .user-info-container h2 {
   margin: 0;
   font-size: 28px; 
+ 
 }
 
 .user-info-container img {
@@ -45,6 +46,9 @@
   .products-container h2 {
     font-size: 24px;
     margin-bottom: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   
   #theirprod{
