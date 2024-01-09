@@ -241,3 +241,9 @@
   .next_page{
     margin-right: 15px;
   }
+
+  .product-div-name-owner-container > h2{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
