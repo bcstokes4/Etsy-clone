@@ -79,7 +79,6 @@ function CheckoutProduct() {
           'created_at': new Date(),
           'products': productsArr
       }
-      // console.log(bodyOrder)
       let res = await dispatch(submitOrder(bodyOrder));
   
       if (!res.errors) {
@@ -92,7 +91,6 @@ function CheckoutProduct() {
     }
   };
 
-  // console.log(Object.values(productOrders))
   return (
     <>
       <div className="checkout-products-container">

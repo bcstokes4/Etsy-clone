@@ -10,11 +10,9 @@ import {
   fetchCreateProductImage
 } from "../../store/products";
 import { getCurr } from "../../store/session";
-// import { useHistory } from "react-router-dom";
 
 function ProductForm({ product, formAction }) {
   const dispatch = useDispatch();
-  // const history = useHistory();
   const { closeModal } = useModal();
 
   const [name, setName] = useState(formAction === "edit" ? product.name : "");

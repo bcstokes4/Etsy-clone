@@ -68,7 +68,7 @@ function SearchBar({ className }) {
             .map((item) => (
               <div
                 onClick={() => {
-                  history.push(`products/${item.id}`);
+                  history.push(`/products/${item.id}`);
                   setSearchTerm("");
                 }}
                 className="search_term_result search_term_target"
