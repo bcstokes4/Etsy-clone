@@ -137,7 +137,7 @@ function ProductDetails() {
   // }
   return (
     <div className="product-details-main-container">
-      <SpinnerWrapper/>
+      {/* <SpinnerWrapper/> */}
       {/* <div className="prod-details-top-container"> */}
       <div className="prod-det-product-container">
           <h2>{product.name}</h2>

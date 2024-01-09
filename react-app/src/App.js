@@ -32,9 +32,9 @@ function App() {
           <SplashPage isLoaded={isLoaded}/>
         </Route>
         <Route exact path='/products'>
-        <SpinnerWrapper>
+        {/* <SpinnerWrapper> */}
             <AllProducts />
-          </SpinnerWrapper>
+          {/* </SpinnerWrapper> */}
         </Route>
         <Route exact path="/checkout">
           <CheckoutProduct />
