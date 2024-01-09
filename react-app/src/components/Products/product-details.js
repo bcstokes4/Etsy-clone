@@ -82,7 +82,7 @@ function ProductDetails() {
 
   useEffect(() => {
     const initialFetch = async () => {
-      await dispatch(clearProduct())
+      // await dispatch(clearProduct())
       await dispatch(getCurr());
       const res = await dispatch(fetchOneProduct(productId));
       await dispatch(fetchProducts());
