@@ -55,7 +55,8 @@
 }
 .orders-container {
   background-color: whitesmoke;
-  padding: 10px; 
+  padding: 10px;
+  /* max-width: 80%;  */
 }
 .user-order-container {
   border: 1px solid #ccc;
@@ -206,6 +207,26 @@
   }
 
   /* carousel bullshit */
-  .carousel-wrapper{
-    width: 80vw;
+  .alice-carousel__wrapper{
+    max-width: 1150px;
   }
+  .alice-carousel__stage-item {
+    width: 100% !important; 
+    min-width: 100% !important; 
+  }
+  
+  /* .alice-carousel__stage-item:not(.__active) {
+    display: none; /* Hide inactive items */
+  
+ 
+  /* .alice-carousel__stage-item{
+    width: 0px !important; 
+    height: 0px !important;
+  }
+  .__active{
+    width: 80% !important;
+    height: 100% !important;
+  } */
+
+ 
+  

@@ -45,6 +45,12 @@ class User(db.Model, UserMixin):
             'profile_picture': self.profile_picture,
             'created_at': self.created_at
         }
+    def to_dict_just_name(self): 
+        return {
+            'id': self.id,
+            'name': self.name,
+            'profile_picture': self.profile_picture,
+        }
     @property
     def password(self):
         return self.hashed_password

@@ -1,0 +1,33 @@
+.footer-container{
+    border-top: 1px solid gray;
+    background-color: white;
+    /* width: 96.7%; */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: 50px;
+    padding-right: 60px;
+    gap: 20px;
+    list-style: none;
+}
+.footer-name {
+    font-size: 30px;
+    padding-right: 30px;
+}
+.footer-links{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fa-brands{
+    font-size: 23px;
+    color: gray;
+}
+.fa-github:hover {
+    color: black;
+    }
+
+.fa-linkedin:hover {
+    color: #0077b5
+    }

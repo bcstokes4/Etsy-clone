@@ -97,3 +97,8 @@ input[type="radio"] {
     cursor: pointer;
     background-color: #d24b14;
   }
+  .review-errors{
+    color: red;
+    min-height: 20px;
+    padding: 0;
+  }

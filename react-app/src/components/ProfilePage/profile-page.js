@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import ProductForm from "../Forms/ProductForm";
@@ -22,17 +23,25 @@ function ProfilePage() {
   const favorites = sessionUser?.favorites;
   const noPictureImg =
     "https://sporthub-bucket.s3.amazonaws.com/sporthub-seeders/no-pfp.jpeg";
-
+  const [orders, setOrders] = useState([])
   useEffect(() => {
     dispatch(getCurr());
   }, [dispatch]);
+  useEffect(() => {
+    if (sessionUser && sessionUser.orders.length > 0) {
+      setOrders(sessionUser.orders.sort((a, b) => {
+        const dateA = new Date(a.created_at);
+        const dateB = new Date(b.created_at);
+        return dateB - dateA;
+      }))
+    }
+  }, [sessionUser]);
   useEffect(() => {
     if (!sessionUser) {
       history.push("/");
     }
   }, [sessionUser, history, dispatch]);
   if (!sessionUser) return null;
-
   const orderDate = (createdAt) => {
     let parts = createdAt.split(" ");
     return parts.slice(0, 4).join(" ");
@@ -102,74 +111,90 @@ function ProfilePage() {
       </div>
       <div className="orders-container">
         <h2>Orders</h2>
-        <div className="carousel-wrapper">
-          <AliceCarousel>
+      
           {sessionUser &&
             sessionUser.orders.length > 0 &&
-            sessionUser.orders.map((order) => (
-                <div className="user-order-container" key={order.id}>
-                  <h2>{orderDate(order.created_at)}</h2>
-                  {order.products.length > 0 &&
-                    order.products.map((product) => (
-                      <div className="order-item-container" key={product.id}>
-                        <div className="order-text-container">
-                          <h4>{product.product.name}</h4>
-                          <p>{product.product.body}</p>
-                          <p>
-                            Price:{" "}
-                            <span className="money">
-                              ${product.product.price}
-                            </span>
-                          </p>
+            
+        <div className="carousel-wrapper">
+          <AliceCarousel
+          items={orders.map((order) => (
+            <div className={`user-order-container`}
+            key={order.id}>
+              <h2>{orderDate(order.created_at)}</h2>
+              {order.products.length > 0 &&
+                order.products.map((product) => (
+                  <div className="order-item-container" key={product.id}>
+                    <div className="order-text-container">
+                      <h4>{product.product.name}</h4>
+                      <p>{product.product.body}</p>
+                      <p>
+                        Price:{" "}
+                        <span className="money">
+                          ${product.product.price}
+                        </span>
+                      </p>
 
-                          {reviewHelper(product.product.id) ? (
-                            <OpenModalButton
-                              className="edit-review"
-                              buttonText={
-                                <span>
-                                  <i className="fas fa-edit"></i>Edit Review
-                                </span>
-                              }
-                              modalComponent={
-                                <ReviewForm
-                                  formAction="edit"
-                                  prevReview={reviewHelper(product.product.id)}
-                                  productId={product.product.id}
-                                  key={product.product.id}
-                                />
-                              }
+                      {reviewHelper(product.product.id) ? (
+                        <OpenModalButton
+                          className="edit-review"
+                          buttonText={
+                            <span>
+                              <i className="fas fa-edit"></i>Edit Review
+                            </span>
+                          }
+                          modalComponent={
+                            <ReviewForm
+                              formAction="edit"
+                              prevReview={reviewHelper(product.product.id)}
+                              productId={product.product.id}
+                              key={product.product.id}
                             />
-                          ) : (
-                            <OpenModalButton
-                              buttonText={
-                                <span>
-                                  <i className="fas fa-edit"></i>Leave A Review
-                                </span>
-                              }
-                              modalComponent={
-                                <ReviewForm
-                                  productId={product.product.id}
-                                  key={product.product.id}
-                                />
-                              }
-                            />
-                          )}
-                        </div>
-                        <img
-                          src={product.product.preview_image.product_image}
-                          alt={product.product.name}
-                          className="user-order-image"
+                          }
                         />
-                        <p>x{product.quantity}</p>
-                      </div>
-                    ))}
-                  <p>
-                    Total: <span className="money">${order.price}</span>
-                  </p>
-                </div>
-            ))}
-            </AliceCarousel>
+                      ) : (
+                        <OpenModalButton
+                          buttonText={
+                            <span>
+                              <i className="fas fa-edit"></i>Leave A Review
+                            </span>
+                          }
+                          modalComponent={
+                            <ReviewForm
+                              productId={product.product.id}
+                              key={product.product.id}
+                            />
+                          }
+                        />
+                      )}
+                    </div>
+                    <img
+                      src={product.product.preview_image.product_image}
+                      alt={product.product.name}
+                      className="user-order-image"
+                    />
+                    <p>x{product.quantity}</p>
+                  </div>
+                ))}
+              <p>
+                Total: <span className="money">${order.price}</span>
+              </p>
+            </div>
+        ))}
+          />
+
+
+
+
+
+
         </div>
+          }
+
+            
+
+
+
+
       </div>
       <div className="user-products-container">
         <h2 id="prod-head">

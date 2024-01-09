@@ -18,7 +18,12 @@ function CheckoutProduct() {
     
     dispatch(loadCartThunk());
   }, [dispatch]);
-
+  useEffect(() => {
+    // Redirect if cart is empty
+    if (Object.keys(cart).length === 0) {
+      history.push('/current');
+    }
+  }, [cart, history]);
   const [address, setAddress] = useState("");
   const [errors, setErrors] = useState({});
 

@@ -1,0 +1,123 @@
+/* Search bar styles */
+.search_bar_main_container {
+    position: relative;
+    width: 100%; /* Adjust the width as needed */
+    /* overflow-y: hidden; */
+    /* display: flex; */
+  }
+  .search-items-map-wrapper {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    /* max-height: 200px; */
+    background-color: #fff;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    overflow-y: auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  /* .search_bar_glass {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    /* padding: 8px 30px 8px 10px; */
+    /* position: relative; */
+    .search_bar_glass {
+        display: flex;
+        align-items: center;
+        /* border: 1px solid #ccc; */
+        border-radius: 0 0 10px 10px;
+        /* padding: 8px 10px; */
+        position: relative;
+      }
+  
+  .fa-magnifying-glass {
+    position: absolute;
+    left: 10px;
+    font-size: 18px;
+    color: #999;
+  }
+  
+  .search_bar {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+  .search_bar_glass .search_icon {
+    position: absolute;
+    right: 8px;
+    color: #999;
+  }
+  .search_bar_glass .clear_search_icon {
+    position: absolute;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .search_bar.search_term_target{
+    margin: 0;
+    height: 40px;
+    /* width: 100%; */
+  }
+  .search_bar_glass .clear_search_icon:hover {
+    color: red; /* Change color on hover if needed */
+  }
+  
+  /* Dropdown product styles */
+  .search_term_result {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search_term_result:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .search_term_img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  
+  .item_name_brand_search h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Adjustments for smaller screens */
+  @media screen and (max-width: 768px) {
+    .search_bar {
+      font-size: 12px;
+    }
+    
+    .search_term_result {
+      padding: 8px;
+    }
+  
+    .search_term_img {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .item_name_brand_search h4 {
+      font-size: 12px;
+    }
+  }
+  
+  

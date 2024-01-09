@@ -1,15 +1,75 @@
-.video-background {
-    position: relative;
-    width: 100%;
-    height: 100vh; /* Set the height of the video background */
-    overflow: hidden;
+
+
+.splash-main-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.video {
+  height: 76vh;
+  width: 100%;
+  object-fit: cover;
+}
+.landing-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.site-description {
+  font-size: 30px;
+  color: black;
+  margin-bottom: 20px;
+}
+
+/* .explore-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #F1641E;
+  color: #000;
+  border: 1px solid black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+} */
+/* .explore-button:hover{
+  background-color: #c9531a;
+} */
+.explore-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.4); 
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 2px solid #fff; 
+}
+.explore-button:hover{
+  background-color: rgba(255, 255, 255, 0.9);
+}
+@media screen and (min-height: 1100px) {
+  .splash-main-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
-  
+
+  .Navigation {
+    height: 8vh;
+  }
+
   .video {
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 84vh;
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensure the video covers the entire container */
+    object-fit: cover;
   }
+
+  .Footer {
+    height: 8vh;
+  }
+}

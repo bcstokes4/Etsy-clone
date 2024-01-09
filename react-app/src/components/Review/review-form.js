@@ -61,9 +61,7 @@ function ReviewForm({ formAction, prevReview, productId }) {
   };
   return (
     <form className="review_form_container" onSubmit={onSubmit}>
-      <div className="heading_text">
-        {headingText} 
-      </div>
+      <div className="heading_text">{headingText}</div>
       <label className="form_label">
         <textarea
           className="login_signup_textarea review_text_area"
@@ -73,7 +71,7 @@ function ReviewForm({ formAction, prevReview, productId }) {
           onChange={(e) => setReview(e.target.value)}
         />
       </label>
-      <div>{errors.review ? errors.review : ""}</div>
+      <div className="review-errors">{errors.review ? errors.review : ""}</div>
       <div>
         <div className="review_rating_div">How would you rate it? </div>
         <div className="stars_review">
@@ -99,26 +97,26 @@ function ReviewForm({ formAction, prevReview, productId }) {
           })}
         </div>
       </div>
-      <div>{errors.stars ? errors.stars : ""}</div>
+      <div className="review-errors"> {errors.stars ? errors.stars : ""}</div>
       <div className="buttons-div">
         <button type="submit" className="update-review-button">
           {formAction !== "edit" ? "Post Review" : "Update Review"}
         </button>
         <div className="delete_review_button">
-        {formAction === "edit" ? (
-          <OpenModalButton
-            buttonText={
-              <span>
-                <i className="fa-solid fa-trash"></i>Delete Review
-              </span>
-            }
-            className="delete_product"
-            key={prevReview.id}
-            modalComponent={<DeleteReviewModal reviewId={prevReview.id} />}
-          />
-        ) : (
-          ""
-        )}
+          {formAction === "edit" ? (
+            <OpenModalButton
+              buttonText={
+                <span>
+                  <i className="fa-solid fa-trash"></i>Delete Review
+                </span>
+              }
+              className="delete_product"
+              key={prevReview.id}
+              modalComponent={<DeleteReviewModal reviewId={prevReview.id} />}
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </form>

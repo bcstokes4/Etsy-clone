@@ -39,6 +39,7 @@ class Product(db.Model):
             'category': self.category,
             'created_at': self.created_at,
             'preview_image': self.preview_image,
+            'user': self.user.to_dict_just_name(),
             'reviews': [review.to_dict() for review in self.reviews],
             }
         
