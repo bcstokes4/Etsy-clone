@@ -56,5 +56,43 @@
 |------------------------------------|--------|------------------------------------------------------------|---------------------------------------------------------|
 | `/api/users/:userId`               | GET    | Attempts to get the information of the user with a specific `userId`. | Returns an object with user information.     |
 
+### PRODUCTS
+| Endpoint                             | Method | Purpose                                                                     | Response                                                          |
+|--------------------------------------|--------|-----------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `/api/products`                         | GET    | Attempts to get all the products listed on SportHub.                          | Returns an array of objects.                                |
+| `/api/products/:productId`                 | GET    | Attempts to get the information for a specific product. | If the product exists, it returns an object with product details.               |
+| `/api/product`                         | POST   | Attempts to create a new product. | If the request passes form validations, it returns an object with the new product details.         |
+| `/api/products/:productId`                 | POST   | Attempts to update the product. | If the product exists and the request passes form validations, it returns an object with the new updated details. | 
+| `/api/products/:productId`                 | DELETE | Attempts to delete the product. | If the product exists and belongs to the user, it returns the object `{"status": "successfully deleted product"}`.        |
+
+### Product Images
+| Endpoint                         | Method | Purpose                                                                                   | Response                                          |
+|----------------------------------|--------|-------------------------------------------------------------------------------------------|---------------------------------------------------|
+| `/api/products/:productId/images`        | POST   | Attempts to add an image for the product. | If the request is valid, it returns the new image record as an object. |
+| `/api/products/:productId/images/:imageId`        | POST   | Attempts to update an image for the product. | If the request is valid, it returns the updated image record as an object. |
+| `/api/products/:productId/images/:imageId`        | DELETE   | Attempts to delete an image for the product. | If the product exists and belongs to the user, it returns the object `{"status": "successfully deleted image"}`.        |
+
+
+### REVIEWS
+| Endpoint                         | Method | Purpose                                                                                   | Response                                          |
+|----------------------------------|--------|-------------------------------------------------------------------------------------------|---------------------------------------------------|
+| `/api/products/:productId/reviews`        | POST   | Attempts to add a review record for the product. | If the request is valid, it returns the new review record as an object. |
+| `/api/products/:productId/reviews/:reviewId`        | POST   | Attempts to update a review record for the product. | If the request is valid, it returns the updated review record as an object. |
+| `/api/reviews/:reviewId`        | DELETE   | Attempts to delete a review record for the product. | If the product exists and belongs to the user, it returns the object `{"status": "successfully deleted review"}`.        |
+
+
+### ORDERS
+| Endpoint                         | Method | Purpose                                                                                   | Response                                          |
+|----------------------------------|--------|-------------------------------------------------------------------------------------------|---------------------------------------------------|
+| `/api/orders`        | GET   | Attempts to get all the orders for session user. | If the request is valid, it returns an array of the users order objects. |
+| `/api/orders/:orderID`        | GET   | Attempts to get a single order for session user. | If the request is valid, it returns the proper order object. |
+| `/api/orders`        | POST   | Creates an order for the session user | Once the request is validated via middleware, the newly created order record will be returned as an object |
+
+### FAVORITES
+| Endpoint                         | Method | Purpose                                                                                   | Response                                          |
+|----------------------------------|--------|-------------------------------------------------------------------------------------------|---------------------------------------------------|
+| `/api/favorites/:productId`        | POST   | Creates a favorite for a product for session user. | If the request is valid, it returns the object `{"status": "successfully added favorite"}`. |
+| `/api/favorites/:productId`        | DELETE   | Deletes a favorite for a product for session user. | If the request is valid, it returns the object `{"status": "successfully deleted favorite"}`. |
+
 
 
