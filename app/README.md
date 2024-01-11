@@ -95,4 +95,15 @@
 | `/api/favorites/:productId`        | DELETE   | Deletes a favorite for a product for session user. | If the request is valid, it returns the object `{"status": "successfully deleted favorite"}`. |
 
 
+## Wiki links
++ [**Database Schema**](https://github.com/bcstokes4/Etsy-clone/wiki/Database-Schema)
++ [**Wireframe**](https://github.com/bcstokes4/Etsy-clone/wiki/Wireframe)
++ [**User Stories**](https://github.com/bcstokes4/Etsy-clone/wiki/User-Stories)
++ [**Features**](https://github.com/bcstokes4/Etsy-clone/wiki/Features)
 
+
+## Future Implementations:
+* Addition of google OAuth login/signup
+* Allow users to discount their products
+* Create ads and alerts for products and sellers
+* Allow sellers to create storefront account and sell through their storefronts
