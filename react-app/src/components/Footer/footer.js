@@ -5,7 +5,7 @@ function Footer() {
   return (
     <ul className="footer-container">
       <li className="footer-name">Brian Stokes</li>
-      <l1>
+      <li>
         <a
           className="footer-links"
           target="_blank"
@@ -13,7 +13,7 @@ function Footer() {
         >
           <i className="fa-brands fa-github"></i>
         </a>
-      </l1>
+      </li>
       <li>
         <a
           className="footer_links linkedin"

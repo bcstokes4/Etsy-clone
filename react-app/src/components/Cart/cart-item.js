@@ -30,7 +30,6 @@ function CartItem({ item }) {
         className="qty"
           onChange={(e) => {
             if (e.target.value === "remove") {
-                console.log(item, 'ITEM')
               dispatch(removeFromCart(item));
             } else {
               dispatch(updateCartQty(item, e.target.value));

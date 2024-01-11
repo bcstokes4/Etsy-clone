@@ -37,7 +37,6 @@ function OtherUserPage() {
     );
   }
 
-  console.log(fullMonth);
 
   useEffect(() => {
     dispatch(getOtherUser(userId));

@@ -3,17 +3,8 @@ import { ThreeDots } from "react-loader-spinner";
 import './spinner.css'
 
 function SpinnerWrapper({ children }) {
-  const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 1400); 
-    
-    return () => clearTimeout(timer);
-  }, []);
-
-  return !isLoaded ? (
+  return (
     <div className="tailspin-wrapper">
       <ThreeDots
         visible={true}
@@ -25,8 +16,6 @@ function SpinnerWrapper({ children }) {
         wrapperClass=""
       />
     </div>
-  ) : (
-    <>{children}</>
   );
 }
 

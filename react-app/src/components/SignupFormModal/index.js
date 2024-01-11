@@ -68,8 +68,7 @@ function SignupFormModal() {
 		}
 		
 		if (!Object.values(errorsObj).length) {
-			console.log('DISPATCHING')
-			console.log(username, 'USERNAME')
+		
 			const data = await dispatch(
 			  signUp(
 				name,

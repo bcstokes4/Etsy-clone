@@ -65,9 +65,7 @@ function ProductDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [product]);
-  // const scrollToFunc = () => {
 
-  // }
   useEffect(() => {
     const isProductFavorited = user?.favorites?.some(
       (favorite) => favorite.id === product.id
@@ -80,11 +78,19 @@ function ProductDetails() {
   };
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadedSpinner, setIsLoadedSpinner] = useState(false);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoadedSpinner(true);
+    }, 1400);
+
+    return () => clearTimeout(timer);
+  }, []);
   useEffect(() => {
     const initialFetch = async () => {
       // dispatch(fetchDeleteProduct())
-      await dispatch(getCurr());
+      // await dispatch(getCurr());
       const res = await dispatch(fetchOneProduct(productId));
       await dispatch(fetchProducts());
       if (res?.ok === false) {
@@ -121,105 +127,100 @@ function ProductDetails() {
     }
     setIsFavorited((prevState) => !prevState);
   };
-  // if (!isLoaded2){
-  //   return (
-  //     <div className="tailspin-wrapper">
-  //       <ThreeDots
-  //         visible={true}
-  //         height={120}
-  //         width={120}
-  //         color="grey"
-  //         radius={1}
-  //         wrapperStyle={{}}
-  //         wrapperClass=""
-  //       />
-  //     </div>
-  //   )
-  // }
+
   return (
     <>
-      <div className="product-details-main-container">
+      {!isLoadedSpinner ? (
         <SpinnerWrapper />
-        {/* <div className="prod-details-top-container"> */}
-        <div className="prod-det-product-container">
-          <h2>{product.name}</h2>
-          <img src={product.preview_image?.product_image} alt={product.name} />
-          <div
-            className="seller-info-container"
-            onClick={() => redirectToUserPage(product.user.id)}
-          >
-            <h2>Seller:</h2>
+      ) : (
+        <div className="product-details-main-container">
+          {/* <div className="prod-details-top-container"> */}
+          <div className="prod-det-product-container">
+            <h2>{product.name}</h2>
             <img
-              id="pd-seller-img"
-              src={
-                product.user?.profile_picture
-                  ? product.user?.profile_picture
-                  : noPictureImg
-              }
-              alt={product?.user?.name}
+              src={product.preview_image?.product_image}
+              alt={product.name}
             />
+            <div
+              className="seller-info-container"
+              onClick={() => redirectToUserPage(product.user.id)}
+            >
+              <h2>Seller:</h2>
+              <img
+                id="pd-seller-img"
+                src={
+                  product.user?.profile_picture
+                    ? product.user?.profile_picture
+                    : noPictureImg
+                }
+                alt={product?.user?.name}
+              />
 
-            <h2 id="prod-det-seller-name">{product?.user?.name}</h2>
+              <h2 id="prod-det-seller-name">{product?.user?.name}</h2>
+            </div>
+            <div className="body-price">
+              <p id="pd-body">{product?.body}</p>
+              <p id="pd-price">${product?.price}</p>
+            </div>
+            {user && (
+              <i
+                className={
+                  isFavorited ? "fa-solid fa-heart" : "fa-regular fa-heart"
+                }
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleFavorite();
+                }}
+              ></i>
+            )}
+
+            <div className="overlay-user-profile">
+              <ProductModalButton
+                className="add-to-cart-button"
+                buttonText={"Add to Cart"}
+                key={product.id}
+                modalComponent={<ProductModal product={product} />}
+              />
+            </div>
+            {/* </div> */}
           </div>
-          <div className="body-price">
-            <p id="pd-body">{product?.body}</p>
-            <p id="pd-price">${product?.price}</p>
-          </div>
-          {user && (
-            <i
-              className={
-                isFavorited ? "fa-solid fa-heart" : "fa-regular fa-heart"
-              }
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleFavorite();
-              }}
-            ></i>
-          )}
 
-          <div className="overlay-user-profile">
-            <ProductModalButton
-              className="add-to-cart-button"
-              buttonText={"Add to Cart"}
-              key={product.id}
-              modalComponent={<ProductModal product={product} />}
-            />
-          </div>
-          {/* </div> */}
-        </div>
-
-        <h2 className="you-may-also-like">You May Also Like</h2>
-        <div id="similar-products-container">
-          {randomProducts.length > 0 &&
-            randomProducts.map((product) => <ProductTile product={product} />)}
-        </div>
-
-        {/* REVIEWS CONTAINER */}
-        <div className="prod-det-reviews-main-container">
-          <h2 className="review-heading">Reviews</h2>
-          <div className="reviews-container">
-            {reviews?.length &&
-              reviews?.map((review) => (
-                <div className="review-wrapper">
-                  <div className="reviewer-details">
-                    <img src={review.user.profile_picture} />
-                    <h3>{review.user.name}</h3>
-                    <h5>{timeAgoHelper(review.created_at)}</h5>
-                  </div>
-                  <div className="review-stars">
-                    {[...Array(Math.round(review.stars))].map((star) => {
-                      return <FaStar color="gold" />;
-                    })}
-                    {[...Array(5 - Math.round(review.stars))].map((star) => {
-                      return <FaStar color="gray" />;
-                    })}
-                  </div>
-                  <h3>{review.review}</h3>
-                </div>
+          <h2 className="you-may-also-like">You May Also Like</h2>
+          <div id="similar-products-container">
+            {randomProducts.length > 0 &&
+              randomProducts.map((product) => (
+                <ProductTile product={product} />
               ))}
           </div>
+
+          {/* REVIEWS CONTAINER */}
+          <div className="prod-det-reviews-main-container">
+            <h2 className="review-heading">Reviews</h2>
+            <div className="reviews-container">
+              {reviews?.length &&
+                reviews?.map((review) => (
+                  <div className="review-wrapper">
+                    <div className="reviewer-details">
+                      <img src={review.user.profile_picture} />
+                      <h3>{review.user.name}</h3>
+                      <h5>{timeAgoHelper(review.created_at)}</h5>
+                    </div>
+                    <div className="review-stars">
+                      {[...Array(Math.round(review.stars))].map((star) => {
+                        return <FaStar color="gold" />;
+                      })}
+                      {[...Array(5 - Math.round(review.stars))].map((star) => {
+                        return <FaStar color="gray" />;
+                      })}
+                    </div>
+                    <h3>{review.review}</h3>
+                  </div>
+                ))}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
+
       <Footer />
     </>
   );

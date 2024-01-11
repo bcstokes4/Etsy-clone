@@ -12,7 +12,7 @@ import CheckoutProduct from "./components/Checkout/Checkout";
 import OtherUserPage from "./components/OtherUserPage/other-user-page";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
-import SpinnerWrapper from "./components/LoadingSpinner";
+// import SpinnerWrapper from "./components/LoadingSpinner";
 
 function App() {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh; /* Use the entire viewport height */
+  height: 100vh; /* Use the entire viewport height */
 }
 /* .loading-spinner {
     display: flex;

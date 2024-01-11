@@ -33,10 +33,6 @@ function ProductTile({ product }) {
   const directToProductDetails = () => {
     history.push(`/products/${product.id}`);
   };
-  // console.log('PRODUCT', reviews)
-  // const handleAddToCart = (e) => {
-  //   e.stopPropagation();
-  // };
 
   const quickAdd = (e) => {
     dispatch(loadCart());

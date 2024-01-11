@@ -65,95 +65,111 @@ function AllProducts() {
     setCurrentPage(1);
   };
 
-  return (
-    <>
-    <div className="products-main-container">
-      <SpinnerWrapper/>
-      {/* <h1>Products</h1> */}
-      <div className="category-links">
-        <button onClick={() => filterProductsByCategory("All")}>All</button>
-        <button onClick={() => filterProductsByCategory("Football")}>
-          Football
-        </button>
-        <button onClick={() => filterProductsByCategory("Soccer")}>
-          Soccer
-        </button>
-        <button onClick={() => filterProductsByCategory("Baseball")}>
-          Baseball
-        </button>
-        <button onClick={() => filterProductsByCategory("Basketball")}>
-          Basketball
-        </button>
-        <button onClick={() => filterProductsByCategory("Track")}>Track</button>
-        <button onClick={() => filterProductsByCategory("Swimming")}>
-          Swimming
-        </button>
-        <button onClick={() => filterProductsByCategory("Lacrosse")}>
-          Lacrosse
-        </button>
-      </div>
+  const [isLoaded, setIsLoaded] = useState(false);
 
-      <div className="products-container-main">
-        {currentItems.length > 0 &&
-          currentItems.map((product) => (
-            <ProductTile product={product} key={product.id} />
-          ))}
-      </div>
-      <div className="page_buttons">
-        <button
-          className={
-            currentPage === 1 ? "disabled_previous_page" : "previous_page"
-          }
-          onClick={handlePreviousPage}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <div className="pages">
-          {pageNumbers.map((number) => (
-            <button
-              key={number}
-              onClick={() => setCurrentPage(number)}
-              disabled={number === currentPage}
-              className={
-                number === currentPage
-                  ? "disabled_selected_page"
-                  : "selected_page"
-              }
-            >
-              {number}
-            </button>
-          ))}
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 1400);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+      <>
+        <div className="products-main-container">
+          {!isLoaded ? (
+            <SpinnerWrapper />
+          ) : (
+            <>
+              <div className="category-links">
+                <button onClick={() => filterProductsByCategory("All")}>All</button>
+                <button onClick={() => filterProductsByCategory("Football")}>
+                  Football
+                </button>
+                <button onClick={() => filterProductsByCategory("Soccer")}>
+                  Soccer
+                </button>
+                <button onClick={() => filterProductsByCategory("Baseball")}>
+                  Baseball
+                </button>
+                <button onClick={() => filterProductsByCategory("Basketball")}>
+                  Basketball
+                </button>
+                <button onClick={() => filterProductsByCategory("Track")}>Track</button>
+                <button onClick={() => filterProductsByCategory("Swimming")}>
+                  Swimming
+                </button>
+                <button onClick={() => filterProductsByCategory("Lacrosse")}>
+                  Lacrosse
+                </button>
+              </div>
+  
+              <div className="products-container-main">
+                {currentItems.length > 0 &&
+                  currentItems.map((product) => (
+                    <ProductTile product={product} key={product.id} />
+                  ))}
+              </div>
+  
+              <div className="page_buttons">
+                <button
+                  className={
+                    currentPage === 1 ? "disabled_previous_page" : "previous_page"
+                  }
+                  onClick={handlePreviousPage}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+                <div className="pages">
+                  {pageNumbers.map((number) => (
+                    <button
+                      key={number}
+                      onClick={() => setCurrentPage(number)}
+                      disabled={number === currentPage}
+                      className={
+                        number === currentPage
+                          ? "disabled_selected_page"
+                          : "selected_page"
+                      }
+                    >
+                      {number}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  className={
+                    currentPage === totalPages ? "disabled_next_page" : "next_page"
+                  }
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+  
+                <div className="items_per_page">
+                  <label>Items per page: </label>
+                  <select
+                    className="select_items_per_page"
+                    value={itemsPerPage}
+                    onChange={(e) => {
+                      setItemsPerPage(e.target.value);
+                    }}
+                  >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                  </select>
+                </div>
+              </div>
+            </>
+          )}
         </div>
-        <button
-          className={
-            currentPage === totalPages ? "disabled_next_page" : "next_page"
-          }
-          onClick={handleNextPage}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </button>
-        <div className="items_per_page">
-          <label>Items per page: </label>
-          <select
-            className="select_items_per_page"
-            value={itemsPerPage}
-            onChange={(e) => {
-              setItemsPerPage(e.target.value);
-            }}
-          >
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <Footer/>
-    </>
-  );
+        <Footer />
+      </>
+  )
 }
 
 export default AllProducts;
